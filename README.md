@@ -7,11 +7,11 @@ Windows 64bit
 Autori
 ------
 
-Nazev tymu
-- xlogin01 jmeno prijmeni 
-- xlogin02 jmeno prijmeni 
-- xlogin03 jmeno prijmeni 
-- xlogin04 jmeno prijmeni 
+Vepřo-knedlo-zelo s bryndzou
+- xpucek03 Petr Púček (vepřo)
+- xfojti15 Anna Fojtíková (knedlo) 
+- xciesl06 Ondřej Cieslar (zelo)
+- xsedil00 Dominika Sedileková (bryndza) 
 
 Licence
 -------
