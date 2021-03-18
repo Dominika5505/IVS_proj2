@@ -1,0 +1,101 @@
+#################################
+Knedlo-vepřo-zelo s bryndzou TEAM
+#################################
+
+stanovené termíny:
+------------------
+
+	-- 16. 4. 2021
+		- zhotovený časový plán
+	-- 26. 3. 2021
+		- kompletní testy pro TDD
+	-- 4. 4. 2021
+		- dokončená implementace knihovny bez Profilingu
+	-- 10. 4. 2021
+		- kompletní matematická knihovna i s Profilingem
+	-- 11. 4. 2021
+		- vygenerování dokumentace za pomocí Doxygenu
+	-- 13. 4. 2021
+		- kompletní Makefile
+	-- 18. 4. 2021
+		- funkční GUI s nápovědou
+	-- 23. 4. 2021
+		- funkční instalátor na Windows
+	-- 27. 4. 2021
+		- dokončený mockup pro další verzi kalkulačky
+		- dokončení finálního testování instalace
+	-- 28. 4. 2021
+		- dokončená kompletní dokumentace 
+		- zhodnocení týmu
+
+přidělení úkolů:
+----------------
+
+	-- časový plán
+		- Petr Půček (xpucek03)
+		- Anna Fojtíková (xfojti15)
+		- Dominika Sedileková (xsedil00)
+	-- testy pro TDD
+		- Petr Půček (xpucek03)
+	-- implementace knihovny
+		- Dominika Sedileková (xsedil00)
+	-- implementace Profilingu
+		- Dominika Sedileková (xsedil00)
+		- Petr Půček (xpucek03)
+	-- generování dokumentace
+		- Petr Půček (xpucek03)
+	-- vytvoření Makefile
+		- Dominika Sedileková (xsedil00)
+	-- návrh GUI
+		- Anna Fojtíková (xfojti15)
+	-- implementace GUI s nápovědou
+		- Anna Fojtíková (xfojti15)
+	-- vytvoření (od)instalátoru na Windows
+		- Ondřej Cieslar (xciesl06)
+	-- mockup další verze
+		- Petr Půček (xpucek03)
+		- Anna Fojtíková (xfojti15)
+		- Dominika Sedileková (xsedil00)
+		- Ondřej Cieslar (xciesl06)
+	-- finální testování
+		- Petr Půček (xpucek03)
+		- Anna Fojtíková (xfojti15)
+		- Dominika Sedileková (xsedil00)
+		- Ondřej Cieslar (xciesl06)
+	-- projektová dokumentace
+		- Anna Fojtíková (xfojti15)
+	-- příručka pro uživatele
+		- Anna Fojtíková (xfojti15)
+	-- referenční manuál
+		- Ondřej Cieslar (xciesl06)
+	-- generování Doxygen dokumentace
+		- Petr Půček (xpucek03)
+		- Dominika Sedileková (xsedil00)
+	-- zhodnocení týmu
+		- Petr Půček (xpucek03)
+		- Anna Fojtíková (xfojti15)
+		- Dominika Sedileková (xsedil00)
+		- Ondřej Cieslar (xciesl06)
+
+komunikační kanály:
+-------------------
+
+	-- povinné pravidelné schůzky
+		- ve formě videohovoru
+		- platforma: Google Meet
+		- 3x týdně
+
+	-- komunikace v případě potíží
+		- ve formě instant messaging
+		- platforma: Messenger
+
+	-- sledování a managing týmového plánu
+		- ve formě interaktivního kalendáře a zapisování úkolů 
+		- platforma: Trello
+
+systém pro správu verzí:
+------------------------
+
+	-- zvolený systém: GIT
+	-- zvolený hosting: GitHub (název repozitáře: Dominika5505/IVS_proj2)
+	-- možnost nahlédnutí vyučujícími: přidáním oprávnění pro adresu ivs.kontrola@gmail.com
