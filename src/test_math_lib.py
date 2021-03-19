@@ -246,8 +246,24 @@ class TestMathOperations(unittest.TestCase):
     def test_abs(self):
         ##
         #  @brief test_abs
-        #  checks accuracy of math function for absolute value of a number
+        #  checks accuracy of math function for absolute value of a number (x)
         #
+
+        # test for x >= 0
+        self.assertEqual(math_lib.abs(0), 0)
+        self.assertEqual(math_lib.abs(5), 5)
+
+        # test for x < 0
+        self.assertEqual(math_lib.abs(-5), 5)
+        
+        # test for decimal x
+        self.assertEqual(math_lib.abs(3.1415), 3.1415)
+        self.assertEqual(math_lib.abs(-3.1415), 3.1415)
+
+        # test for large values
+        self.assertEqual(math_lib.abs(5656849063543), 5656849063543)
+        self.assertEqual(math_lib.abs(-5656849063543), 5656849063543)
+
 
         return
 
