@@ -44,7 +44,7 @@ def sub(num1, num2):
     #
     #  @return value of subtraction of two numbers
 
-    return round(num1 - num2, 5)
+    return num1 - num2
 
 def mult(num1, num2):
     ##
@@ -71,7 +71,7 @@ def div(num1, num2):
     if (num2 == 0):
         raise ZeroDivisionError
 
-    return round(num1 / num2, 5)
+    return num1 / num2
 
 def fact(num):
     ##
@@ -101,7 +101,7 @@ def exp(num, exp):
     if (exp < 0) or isinstance(exp, float):
         raise ValueError
 
-    return round(num ** exp, 5)
+    return num ** exp
 
 def abs(num):
     ##
@@ -133,7 +133,7 @@ def root(num, deg):
     if num == 0:
         return 0
     if num < 0:
-        result = round(abs(num)**(1/deg), 5)
+        result = abs(num)**(1/deg)
         return -result
 
-    return round(num**(1/deg), 5)
+    return num**(1/deg)
