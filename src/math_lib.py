@@ -32,9 +32,7 @@ def sum(num1, num2):
     #
     #  @return value of addition of two numbers
 
-    ## TO DO ##
-
-    return
+    return num1 + num2
 
 def sub(num1, num2):
     ##
@@ -46,9 +44,7 @@ def sub(num1, num2):
     #
     #  @return value of subtraction of two numbers
 
-    ## TO DO ##
-
-    return
+    return num1 - num2
 
 def mult(num1, num2):
     ##
@@ -60,9 +56,7 @@ def mult(num1, num2):
     #
     #  @return value of multiplication of two numbers
 
-    ## TO DO ##
-
-    return
+    return num1 * num2
 
 def div(num1, num2):
     ##
@@ -74,9 +68,10 @@ def div(num1, num2):
     #
     #  @return value of division of two numbers
 
-    ## TO DO ##
+    if (num2 == 0):
+        raise ZeroDivisionError
 
-    return
+    return num1 / num2
 
 def fact(num):
     ##
@@ -87,37 +82,26 @@ def fact(num):
     #
     #  @return value of factorial of a number
 
-    ## TO DO ##
+    if (num < 0) or isinstance(num, float):
+        raise ValueError
 
-    return
+    return 1 if (num==1 or num==0) else num * fact(num - 1)
 
 def exp(num, exp):
     ##
     #  @brief exp
-    #  calculates factorial of a number
+    #  calculates exponent of a number
     #
     #  @param num base of power
     #  @param exp exponent of power
     #
     #  @return value of exponentiation
+    if exp == 0:
+        return 1
+    if (exp < 0) or isinstance(exp, float):
+        raise ValueError
 
-    ## TO DO ##
-
-    return
-
-def root(num, deg):
-    ##
-    #  @brief div
-    #  calculates factorial of a number
-    #
-    #  @param num radicand of root
-    #  @param deg degree of root
-    #
-    #  @return value of n-th root
-
-    ## TO DO ##
-
-    return
+    return num ** exp
 
 def abs(num):
     ##
@@ -128,6 +112,28 @@ def abs(num):
     #
     #  @return absolute value of the number
 
-    ## TO DO ##
+    return -num if(num < 0) else num
 
-    return
+def root(num, deg):
+    ##
+    #  @brief div
+    #  calculates square root of a number
+    #
+    #  @param num radicand of root
+    #  @param deg degree of root
+    #
+    #  @return value of n-th root
+
+    if deg % 2 == 0:
+        if num < 0:
+            raise ValueError
+    
+    if (deg < 0) or isinstance(deg, float):
+        raise ValueError
+    if num == 0:
+        return 0
+    if num < 0:
+        result = abs(num)**(1/deg)
+        return -result
+
+    return num**(1/deg)
