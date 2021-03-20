@@ -226,10 +226,10 @@ class TestMathOperations(unittest.TestCase):
 
         # test for decimal result
         self.assertAlmostEqual(math_lib.root(27, 2), 5.1961, places=4) # checks equality for first 4 decimal places
-        self.assertAlmostEqual(math_lib.root(-69, 3), -4.1015, places=4) # checks equality for first 4 decimal places
+        self.assertAlmostEqual(math_lib.root(-69, 3), -4.1016, places=4) # checks equality for first 4 decimal places
 
         # test for decimal x
-        self.assertAlmostEqual(math_lib.root(25.5, 2), 5.0497, places=4) # checks equality for first 4 decimal places
+        self.assertAlmostEqual(math_lib.root(25.5, 2), 5.0498, places=4) # checks equality for first 4 decimal places
         self.assertAlmostEqual(math_lib.root(-66.6, 3), -4.0534, places=4) # checks equality for first 4 decimal places
 
         # test for large values
