@@ -1,5 +1,5 @@
 from tkinter import END
-from calc import Calculator, is_int, int_or_float
+from calculator import Calculator, is_int, int_or_float
 import re
 import sys
 
