@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.font as tkFont
 from gui_func import Gui_Functions
     
 class GUI:
@@ -6,8 +7,9 @@ class GUI:
         self.create_root()
         self.create_frames()
         self.create_input_field()
+        self.create_equasion_field()
         
-        self.guiFuncs = Gui_Functions(self.inputField)
+        self.guiFuncs = Gui_Functions(self.inputField, self.equasionField)
 
         self.create_buttons()
         self.position_buttons()
@@ -15,21 +17,35 @@ class GUI:
 
     def create_root(self):
         self.root = Tk()
-        self.root.geometry("312x402")
+        self.defaultFont = tkFont.Font(root = self.root, family = "Lato", size = 24, weight = "bold")
+        self.root.geometry("312x397")
         self.root.title("Calculator")
 
     def create_frames(self):
-        self.textFrame = Frame(self.root, width = 312, height = 50, bg = "#f5f5f5")
+        emptyFrame1 = Frame(self.root, width = 312, height = 20, bg = "#f5f5f5")
+        emptyFrame1.pack()
+
+        self.textFrame = Frame(self.root, width = 312, height = 20, bg = "#f5f5f5")
         self.textFrame.pack()
-        self.inputFrame = Frame(self.root, width = 312, height = 50, bd = 0, bg = "#f5f5f5")
+        
+        self.inputFrame = Frame(self.root, width = 312, height = 50, bd = 1, bg = "#f5f5f5")
         self.inputFrame.pack(side = TOP)
+
+        emptyFrame2 = Frame(self.root, width = 312, height = 5, bg = "#f5f5f5")
+        emptyFrame2.pack()
+        
         self.btnsFrame = Frame(self.root, width = 312, height = 300, bg = "#fff")
         self.btnsFrame.pack()
 
     def create_input_field(self):
-        self.inputField = Entry(self.inputFrame, font = ('lato', 14), width = 50, bg = "#f5f5f5", bd = 0, justify = RIGHT)
-        self.inputField.pack(ipady = 15)
+        self.inputField = Entry(self.inputFrame, font = ("Lato", 14), width = 50, fg = "#555", bg = "#f5f5f5", bd = 0, justify = RIGHT, cursor = "arrow")
         self.inputField.place(bordermode = OUTSIDE, relwidth = 0.95, relheight = 1)
+
+    def create_equasion_field(self):
+        self.equasionField = Entry(self.textFrame, font = ('Lato', 11), width = 50, fg = "#999", bg = "#f5f5f5", bd = 0, justify = RIGHT)
+
+        self.equasionField.pack()
+        self.equasionField.place(relwidth = 0.95, relheight = 1)
 
     def create_buttons(self):
 
@@ -95,3 +111,4 @@ class GUI:
         self.root.bind(("<BackSpace>") ,lambda event:self.guiFuncs.remove())
         self.root.bind("<Key>" ,self.guiFuncs.key_press)
         self.inputField.bind("<Button-1>", lambda event: "break")
+        self.equasionField.bind("<Button-1>", lambda event: "break")

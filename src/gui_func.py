@@ -5,7 +5,7 @@ import sys
 
 class Gui_Functions:
     
-    def __init__(self, inputField):
+    def __init__(self, inputField, equasionField):
         self.inputField = inputField
         self.equation = ""
         self.result = ""
@@ -14,7 +14,8 @@ class Gui_Functions:
         self.doublePar = False
         self.inPar = False
         self.calculator = ""
-        self.addedDot = False
+        self.equasionField = equasionField
+        self.doubleClear = False
 
     def calculate(self, eq):
         self.calculator = Calculator(eq)
@@ -31,8 +32,7 @@ class Gui_Functions:
                 return "ERROR!"
 
             i += 1
-        return str(self.calculator.eqArray)
-        # return str(eq)
+        return str(self.calculator.eqArray[0])
 
     def abs_test(self):
         num = self.inputField.get()
@@ -108,10 +108,14 @@ class Gui_Functions:
         self.inputField.insert(0, str(current) + str(input))
 
     def div_string(self, input):
-        if(self.toDelete):
+        if self.toDelete:
             self.inputField.delete(0, END)
-            self.calculator.clearArray()
+            self.calculator.clearArray()        
             self.toDelete = False
+
+        if self.doubleClear:
+            self.equasionField.delete(0, END)
+            self.doubleClear = False
         
 
         if self.inPar:
@@ -125,6 +129,7 @@ class Gui_Functions:
         
         if input == "c":
             self.clear_input_field()
+            self.doubleClear = True
         elif input == ".":
             self.add_decimal()
         elif input == "s":
@@ -142,7 +147,6 @@ class Gui_Functions:
 
     def clear_input_field(self):
         self.inputField.delete(0, END)
-        # global self.equation, calculator
         if self.calculator:
             self.calculator.clearArray()
         self.equation = ""
@@ -155,13 +159,17 @@ class Gui_Functions:
             self.add_paranth('')
         
         self.inputField.delete(0, END)
+
         if self.equation == "":
             self.inputField.insert(0, "0")
         else:
             self.result = self.calculate(self.equation)
             self.inputField.insert(0, self.result)
-        self.toDelete = True
-        self.equation = ""
+
+        # self.toDelete = True
+        self.equasionField.delete(0, END)
+        self.equasionField.insert(0, self.equation)
+        # self.equation = ""
 
     def remove(self):
         if self.equation != "":
