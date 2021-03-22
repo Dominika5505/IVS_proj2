@@ -1,7 +1,4 @@
-from gui import GUI, root
+from gui import GUI
 
 gui = GUI()
-gui.position_buttons()
-gui.define_keybinds()
-
-root.mainloop()
+gui.root.mainloop()

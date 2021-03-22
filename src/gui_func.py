@@ -1,24 +1,19 @@
-from tkinter import Button, Entry, Tk, END
+from tkinter import END
 from calc import Calculator, is_int, int_or_float
 import re
 import sys
 
-root = Tk()
-root.title("Calculator")
-
 class Gui_Functions:
-    display = ""
-    equation = ""
-    result = ""
-    toDelete = False
-    addPar = False
-    doublePar = False
-    inPar = False
-    calculator = ""
-
-    def __init__(self):
-        self.display = Entry(root, width=42, borderwidth=0, fg="#ffffff", bg="#313131")
-        self.display.grid(row=0, column=0, columnspan=4, padx=1, pady=1)
+    
+    def __init__(self, inputField):
+        self.inputField = inputField
+        self.equation = ""
+        self.result = ""
+        self.toDelete = False
+        self.addPar = False
+        self.doublePar = False
+        self.inPar = False
+        self.calculator = ""
 
     def calculate(self, eq):
         self.calculator = Calculator(eq)
@@ -40,11 +35,11 @@ class Gui_Functions:
         return str(self.calculator.eqArray)
 
     def abs_test(self):
-        num = self.display.get()
-        self.display.delete(0, END)
+        num = self.inputField.get()
+        self.inputField.delete(0, END)
         
         if is_int(num):
-            self.display.insert(0, str(num))
+            self.inputField.insert(0, str(num))
 
 
     def add_abs(self):
@@ -96,13 +91,13 @@ class Gui_Functions:
 
     def conc_string(self, input):
         self.equation += str(input)
-        current = self.display.get()
-        self.display.delete(0, END)
-        self.display.insert(0, str(current) + str(input))
+        current = self.inputField.get()
+        self.inputField.delete(0, END)
+        self.inputField.insert(0, str(current) + str(input))
 
     def div_string(self, input):
         if(self.toDelete):
-            self.display.delete(0, END)
+            self.inputField.delete(0, END)
             self.calculator.clearArray()
             self.toDelete = False
         
@@ -117,7 +112,7 @@ class Gui_Functions:
                     self.inPar = True
         
         if input == "c":
-            self.clear_display()
+            self.clear_input_field()
         elif input == ".":
             self.add_decimal()
         elif input == "s":
@@ -129,8 +124,8 @@ class Gui_Functions:
         else: self.conc_string(input)
             
 
-    def clear_display(self):
-        self.display.delete(0, END)
+    def clear_input_field(self):
+        self.inputField.delete(0, END)
         # global self.equation, calculator
         if self.calculator:
             self.calculator.clearArray()
@@ -143,12 +138,12 @@ class Gui_Functions:
         if self.addPar:
             self.add_paranth('')
         
-        self.display.delete(0, END)
+        self.inputField.delete(0, END)
         if self.equation == "":
-            self.display.insert(0, "0")
+            self.inputField.insert(0, "0")
         else:
             self.result = self.calculate(self.equation)
-            self.display.insert(0, self.result)
+            self.inputField.insert(0, self.result)
         self.toDelete = True
         self.equation = ""
 
@@ -158,8 +153,8 @@ class Gui_Functions:
                 self.inPar = True 
                 self.doublePar = True
             self.equation = self.equation[:-1]
-            self.display.delete(0, END)
-            self.display.insert(0, self.equation)
+            self.inputField.delete(0, END)
+            self.inputField.insert(0, self.equation)
 
     def key_press(self, event):
         key = event.char
