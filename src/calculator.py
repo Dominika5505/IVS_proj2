@@ -1,5 +1,4 @@
 from math_lib import *
-import numpy as np
 import re
 
 def is_int(str):
