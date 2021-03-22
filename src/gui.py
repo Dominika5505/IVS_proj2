@@ -15,24 +15,21 @@ class GUI:
 
     def create_root(self):
         self.root = Tk()
-        # self.root.iconbitmap("../imgs/icon3.ico")
-        self.root.geometry("312x370")
+        self.root.geometry("312x402")
         self.root.title("Calculator")
 
     def create_frames(self):
-        self.textFrame = Frame(self.root, width = 312, height = 50)
-        self.inputFrame = Frame(self.root, width = 312, height = 50, bd = 0, highlightbackground = "black", highlightcolor = "black")
+        self.textFrame = Frame(self.root, width = 312, height = 50, bg = "#f5f5f5")
+        self.textFrame.pack()
+        self.inputFrame = Frame(self.root, width = 312, height = 50, bd = 0, bg = "#f5f5f5")
         self.inputFrame.pack(side = TOP)
         self.btnsFrame = Frame(self.root, width = 312, height = 300, bg = "#fff")
         self.btnsFrame.pack()
-        # self.btnsFrame = Frame(self.root, width = 312, height = 272.5, bg = "#fafafa")
-        # self.btnsFrame.pack()
 
     def create_input_field(self):
-        self.inputField = Entry(self.inputFrame, font = ('lato', 14), width = 50, bg = "#fafafa", bd = 0, justify = RIGHT)
-        # self.inputField.grid(row = 0, column = 0)
+        self.inputField = Entry(self.inputFrame, font = ('lato', 14), width = 50, bg = "#f5f5f5", bd = 0, justify = RIGHT)
         self.inputField.pack(ipady = 15)
-        self.inputField.place(bordermode = OUTSIDE, relwidth = 1, relheight = 1)
+        self.inputField.place(bordermode = OUTSIDE, relwidth = 0.95, relheight = 1)
 
     def create_buttons(self):
 
@@ -97,3 +94,4 @@ class GUI:
         self.root.bind(("<Return>") ,lambda event:self.guiFuncs.equal())
         self.root.bind(("<BackSpace>") ,lambda event:self.guiFuncs.remove())
         self.root.bind("<Key>" ,self.guiFuncs.key_press)
+        self.inputField.bind("<Button-1>", lambda event: "break")

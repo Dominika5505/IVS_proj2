@@ -14,6 +14,7 @@ class Gui_Functions:
         self.doublePar = False
         self.inPar = False
         self.calculator = ""
+        self.addedDot = False
 
     def calculate(self, eq):
         self.calculator = Calculator(eq)
@@ -26,13 +27,12 @@ class Gui_Functions:
                 self.calculator.solveDiv()
                 self.calculator.solveSub()
                 self.calculator.solveSum()
-            except ZeroDivisionError:
-                return "ERROR: Delení nulou!"
             except:
-                return "ERROR: Nesprávne hodnoty!"
+                return "ERROR!"
 
             i += 1
         return str(self.calculator.eqArray)
+        # return str(eq)
 
     def abs_test(self):
         num = self.inputField.get()
@@ -43,22 +43,26 @@ class Gui_Functions:
 
 
     def add_abs(self):
-        nEq = re.search(r'[-]?\d+[.]?\d*$', self.equation)
-        num = int_or_float(nEq.group()) if nEq else None
+        findNum = re.search(r'[-]?\d+[.]?\d*$', self.equation)
+        foundNum = int_or_float(findNum.group()) if findNum else None
 
-        if num:
-            numLen = len(str(num))
-            for i in range(numLen): 
+        if foundNum:
+            numLen = len(str(foundNum))
+
+            i = 0
+            while i < numLen:
                 self.remove()
-            num = "|" + str(num) + "|"
-            self.conc_string(num)
+                i += 1
+
+            foundNum = "|" + str(foundNum) + "|"
+            self.conc_string(foundNum)
 
 
     def check_root(self):
-        nEq = re.search(r'[-]?\d+[.]?\d*$', self.equation)
-        num = int_or_float(nEq.group()) if nEq else None
+        findNum = re.search(r'[-]?\d+[.]?\d*$', self.equation)
+        foundNum = int_or_float(findNum.group()) if findNum else None
 
-        if num:
+        if foundNum:
             self.conc_string("√")
         else:
             self.conc_string("2√")
@@ -66,28 +70,36 @@ class Gui_Functions:
 
             
     def add_paranth(self, input):
-        nEq = re.search(r'[-]?\d+[.]?\d*$', self.equation)
-        num = int_or_float(nEq.group()) if nEq else None
+        findNum = re.search(r'[-]?\d+[.]?\d*$', self.equation)
+        foundNum = int_or_float(findNum.group()) if findNum else None
 
         self.inPar = False
         self.addPar = False
 
-        if num:
-            numLen = len(str(num))
-            for i in range(numLen): 
+        if foundNum:
+            numLen = len(str(foundNum))
+
+            i = 0
+            while i < numLen:
                 self.remove()
+                i += 1
+
             if self.doublePar:
-                num = str(num) + ")"
+                foundNum = str(foundNum) + ")"
                 self.doublePar = False
             else:
-                num = "(" + str(num) + ")"
-            self.conc_string(num + input)
+                foundNum = "(" + str(foundNum) + ")"
+            self.conc_string(foundNum + input)
 
     def add_decimal(self):
-        if self.equation == "" or not is_int(self.equation[len(self.equation) - 1]):
-            self.conc_string("0.")
-        else:
-            self.conc_string(".")
+        findNum = re.search(r'[-]?\d+[.]\d*$', self.equation)
+        foundNum = str(findNum.group()) if findNum else None
+        
+        if not foundNum:
+            if self.equation == "" or not is_int(self.equation[len(self.equation) - 1]):
+                self.conc_string("0.")
+            else:
+                self.conc_string(".")
 
     def conc_string(self, input):
         self.equation += str(input)
@@ -121,7 +133,11 @@ class Gui_Functions:
             self.add_abs()
         elif self.addPar:
             self.add_paranth(input)
-        else: self.conc_string(input)
+        elif self.equation == "" and not is_int(input): 
+            if input != "." or input != "√":
+                self.conc_string("0" + input)
+        else: 
+            self.conc_string(input)
             
 
     def clear_input_field(self):
