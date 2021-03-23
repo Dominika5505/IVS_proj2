@@ -1,11 +1,12 @@
 from tkinter import END
-from calculator import Calculator, is_int, int_or_float
+from calculator import Calculator, is_int, int_or_float, absolute
+from decimal import Decimal
 import re
 import sys
 
 class Gui_Functions:
     
-    def __init__(self, inputField, equasionField):
+    def __init__(self, inputField, equationField):
         self.inputField = inputField
         self.equation = ""
         self.result = ""
@@ -14,10 +15,14 @@ class Gui_Functions:
         self.doublePar = False
         self.inPar = False
         self.calculator = ""
-        self.equasionField = equasionField
+        self.equationField = equationField
         self.doubleClear = False
+        self.addAbs = False
+        # self.absPipeDeleted = 0
+        self.deleteAbs = False
 
     def calculate(self, eq):
+        # return str(eq)
         self.calculator = Calculator(eq)
         i = 0
         while i < self.calculator.eqArrayLen:
@@ -32,7 +37,13 @@ class Gui_Functions:
                 return "ERROR!"
 
             i += 1
-        return str(self.calculator.eqArray[0])
+
+        resultStr = str(self.calculator.eqArray[0])
+
+        if absolute(Decimal(resultStr).as_tuple().exponent) > 5:
+            return str(round(int_or_float(resultStr), 5))
+        else: return resultStr
+
 
     def abs_test(self):
         num = self.inputField.get()
@@ -49,13 +60,27 @@ class Gui_Functions:
         if foundNum:
             numLen = len(str(foundNum))
 
-            i = 0
-            while i < numLen:
-                self.remove()
-                i += 1
+            if self.equation == ("0" + str(foundNum)):
+                self.equation = ""
+                self.inputField.delete(0, END)
+                
+            else:
+                i = 0
+                while i < numLen:
+                    self.remove()
+                    i += 1
 
             foundNum = "|" + str(foundNum) + "|"
             self.conc_string(foundNum)
+
+    def delete_abs(self):
+        findNum = re.search(r'[|][-]?\d+[.]?\d*[|]$', self.equation)
+        foundNum = str(findNum.group()) if findNum else None
+
+        if foundNum:
+            numLen = len(foundNum)
+
+            self.equation = self.equation[:(-numLen + 1)]
 
 
     def check_root(self):
@@ -70,14 +95,14 @@ class Gui_Functions:
 
             
     def add_paranth(self, input):
-        findNum = re.search(r'[-]?\d+[.]?\d*$', self.equation)
-        foundNum = int_or_float(findNum.group()) if findNum else None
+        findNumEnd = re.search(r'[-]?\d+[.]?\d*^|[-]?\d+[.]?\d*$', self.equation)
+        foundNumEnd = int_or_float(findNumEnd.group()) if findNumEnd else None
 
         self.inPar = False
         self.addPar = False
 
-        if foundNum:
-            numLen = len(str(foundNum))
+        if foundNumEnd:
+            numLen = len(str(foundNumEnd))
 
             i = 0
             while i < numLen:
@@ -85,11 +110,11 @@ class Gui_Functions:
                 i += 1
 
             if self.doublePar:
-                foundNum = str(foundNum) + ")"
+                foundNumEnd = str(foundNumEnd) + ")"
                 self.doublePar = False
             else:
-                foundNum = "(" + str(foundNum) + ")"
-            self.conc_string(foundNum + input)
+                foundNumEnd = "(" + str(foundNumEnd) + ")"
+            self.conc_string(foundNumEnd + input)
 
     def add_decimal(self):
         findNum = re.search(r'[-]?\d+[.]\d*$', self.equation)
@@ -110,11 +135,11 @@ class Gui_Functions:
     def div_string(self, input):
         if self.toDelete:
             self.inputField.delete(0, END)
-            self.calculator.clearArray()        
+            self.inputField.insert(0, self.equation)        
             self.toDelete = False
 
         if self.doubleClear:
-            self.equasionField.delete(0, END)
+            self.equationField.delete(0, END)
             self.doubleClear = False
         
 
@@ -123,7 +148,7 @@ class Gui_Functions:
                 self.addPar = True
 
         if not self.inPar:
-            if self.equation.endswith("-") or self.equation.endswith("+") or self.equation.endswith("/") or self.equation.endswith("*") or self.equation.endswith("^") or self.equation.endswith("√") or self.equation == "":
+            if self.equation.endswith("-") or self.equation.endswith("+") or self.equation.endswith("/") or self.equation.endswith("*") or self.equation.endswith("^") or self.equation.endswith("√"):
                 if input == "-":
                     self.inPar = True
         
@@ -135,12 +160,16 @@ class Gui_Functions:
         elif input == "s":
             self.check_root()
         elif input == "a":
-            self.add_abs()
+            self.add_abs()  
         elif self.addPar:
             self.add_paranth(input)
         elif self.equation == "" and not is_int(input): 
             if input != "." or input != "√":
                 self.conc_string("0" + input)
+        elif self.equation != "" and self.equation[0] == "-":
+            self.equation = "0" + self.equation
+            self.conc_string(input)
+
         else: 
             self.conc_string(input)
             
@@ -162,20 +191,26 @@ class Gui_Functions:
 
         if self.equation == "":
             self.inputField.insert(0, "0")
+            self.equation = "0"
         else:
             self.result = self.calculate(self.equation)
             self.inputField.insert(0, self.result)
 
-        # self.toDelete = True
-        self.equasionField.delete(0, END)
-        self.equasionField.insert(0, self.equation)
-        # self.equation = ""
+        self.equationField.delete(0, END)
+        self.equationField.insert(0, self.equation)
+        if self.result == "ERROR!":
+            self.toDelete = True
+        else:
+            self.equation = self.result
 
     def remove(self):
         if self.equation != "":
             if self.equation.endswith(")"): 
                 self.inPar = True 
                 self.doublePar = True
+            if self.equation.endswith("|"): 
+                self.delete_abs()
+
             self.equation = self.equation[:-1]
             self.inputField.delete(0, END)
             self.inputField.insert(0, self.equation)

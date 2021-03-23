@@ -14,7 +14,6 @@ def is_int(str):
 def int_or_float(num):
     return int(num) if float(num).is_integer() else float(num)
 class Calculator:
-    eqArray = []
     numberArray = []
     mathSymbols = []
     eqArrayLen = 0
@@ -23,10 +22,13 @@ class Calculator:
         self.eqArray = re.findall(r'[+-\/\*\^√]+|[|]?[(]?[-]?\d+[.]?\d*[)]?[!]?[|]?', eqString)  
 
         for num in range(len(self.eqArray)):
-            self.solveFact(num)
-            self.solveAbs(num)
-            self.solvePar(num)
-            self.convertToNum(num)
+            try:
+                self.solveFact(num)
+                self.solveAbs(num)
+                self.solvePar(num)
+                self.convertToNum(num)
+            except:
+                break
 
         self.eqArrayLen = len(self.eqArray)
 
@@ -155,8 +157,10 @@ class Calculator:
         x = num.find("|")
 
         if x != -1:
+            if is_int(self.eqArray[numIndex]):
+                raise Exception("Bad numbers") 
             numFound = int_or_float(self.eqArray[numIndex][x + 1:-1])
-            self.eqArray[numIndex] = str(abs(numFound))
+            self.eqArray[numIndex] = str(absolute(numFound))
 
     def solvePar(self, numIndex):
         num = self.eqArray[numIndex]
@@ -168,7 +172,7 @@ class Calculator:
 
             if newNum:
                 if self.eqArray[numIndex - 1] == "-":
-                    newNum = abs(int_or_float(newNum))
+                    newNum = absolute(int_or_float(newNum))
                     self.eqArray[numIndex - 1] = "+"
                 self.eqArray[numIndex] = str(newNum)
 

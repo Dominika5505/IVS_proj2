@@ -18,7 +18,7 @@ class GUI:
         self.create_input_field()
         self.create_equasion_field()
         
-        self.guiFuncs = Gui_Functions(self.inputField, self.equasionField)
+        self.guiFuncs = Gui_Functions(self.inputField, self.equaionField)
 
         self.create_buttons()
         self.position_buttons()
@@ -60,10 +60,10 @@ class GUI:
         self.inputField.place(bordermode = OUTSIDE, relwidth = 0.95, relheight = 1)
 
     def create_equasion_field(self):
-        self.equasionField = Entry(self.textFrame, font = ('Lato', 11), width = 50, bd = 0, justify = RIGHT, cursor = "arrow")
+        self.equaionField = Entry(self.textFrame, font = ('Lato', 11), width = 50, bd = 0, justify = RIGHT, cursor = "arrow")
 
-        self.equasionField.pack()
-        self.equasionField.place(relwidth = 0.95, relheight = 1)
+        self.equaionField.pack()
+        self.equaionField.place(relwidth = 0.95, relheight = 1)
 
     def create_light_mode_buttons(self):
         self.switchVar = IntVar(value = 1)
@@ -83,44 +83,44 @@ class GUI:
         
         if buttonLightChecked:
 
-            self.switchOuterFrame.config(bg = "#f5f5f5")
-            self.switchFrame.config(bg = "#f5f5f5")
-            self.lightModeButton.config(bg = "#f5f5f5", fg = "#555", highlightcolor = "#f5f5f5", highlightbackground = "#f5f5f5", selectcolor = "#f5f5f5")
-            self.darkModeButton.config(bg = "#f5f5f5", fg = "#555", highlightcolor = "#f5f5f5", highlightbackground = "#f5f5f5", selectcolor = "#f5f5f5")
+            self.switchOuterFrame.config(bg = "#f8f8f8")
+            self.switchFrame.config(bg = "#f8f8f8")
+            self.lightModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8")
+            self.darkModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8")
 
-            self.textFrame.config(bg = "#f5f5f5")
-            self.inputFrame.config(bg = "#f5f5f5")
-            self.emptyFrame.config(bg = "#f5f5f5")
+            self.textFrame.config(bg = "#f8f8f8")
+            self.inputFrame.config(bg = "#f8f8f8")
+            self.emptyFrame.config(bg = "#f8f8f8")
             self.btnsFrame.config(bg = "#fff")
-            self.inputField.config(bg = "#f5f5f5", fg = "#555")
-            self.equasionField.config(bg = "#f5f5f5", fg = "#999")
+            self.inputField.config(bg = "#f8f8f8", fg = "#555")
+            self.equaionField.config(bg = "#f8f8f8", fg = "#999")
 
-            self.buttonClear.config(bg = "#f5f5f5", fg = "#555")
-            self.buttonDelete.config(bg = "#f5f5f5", fg = "#555")
-            self.buttonExp.config(bg = "#f5f5f5", fg = "#555")
-            self.buttonSquare.config(bg = "#f5f5f5", fg = "#555")
-            self.buttonFact.config(bg = "#f5f5f5", fg = "#555")
-            self.buttonDiv.config(bg = "#f5f5f5", fg = "#555")
+            self.buttonClear.config(bg = "#f8f8f8", fg = "#555")
+            self.buttonDelete.config(bg = "#f8f8f8", fg = "#555")
+            self.buttonExp.config(bg = "#f8f8f8", fg = "#555")
+            self.buttonSquare.config(bg = "#f8f8f8", fg = "#555")
+            self.buttonFact.config(bg = "#f8f8f8", fg = "#555")
+            self.buttonDiv.config(bg = "#f8f8f8", fg = "#555")
 
             self.button7.config(bg = "#fff", fg = "#555")
             self.button8.config(bg = "#fff", fg = "#555")
             self.button9.config(bg = "#fff", fg = "#555")
-            self.buttonMul.config(bg = "#f5f5f5", fg = "#555")
+            self.buttonMul.config(bg = "#f8f8f8", fg = "#555")
 
             self.button4.config(bg = "#fff", fg = "#555")
             self.button5.config(bg = "#fff", fg = "#555")
             self.button6.config(bg = "#fff", fg = "#555")
-            self.buttonSub.config(bg = "#f5f5f5", fg = "#555")
+            self.buttonSub.config(bg = "#f8f8f8", fg = "#555")
 
             self.button1.config(bg = "#fff", fg = "#555")
             self.button2.config(bg = "#fff", fg = "#555")
             self.button3.config(bg = "#fff", fg = "#555")
-            self.buttonAdd.config(bg = "#f5f5f5", fg = "#555")
+            self.buttonAdd.config(bg = "#f8f8f8", fg = "#555")
 
             self.buttonAbs.config(bg = "#fff", fg = "#555")
             self.button0.config(bg = "#fff", fg = "#555")
             self.buttonDot.config(bg = "#fff", fg = "#555")
-            self.buttonEqual.config(bg = "#f5f5f5", fg = "#555")
+            self.buttonEqual.config(bg = "#f8f8f8", fg = "#555")
 
         else:
             self.switchOuterFrame.config(bg = "#4f4f4f")
@@ -134,7 +134,7 @@ class GUI:
             self.emptyFrame.config(bg = "#4f4f4f")
             self.btnsFrame.config(bg = "#4f4f4f")
             self.inputField.config(bg = "#4f4f4f", fg = "#aaa")
-            self.equasionField.config(bg = "#4f4f4f", fg = "#888")
+            self.equaionField.config(bg = "#4f4f4f", fg = "#888")
 
             self.buttonClear.config(bg = "#444", fg = "#bbb")
             self.buttonDelete.config(bg = "#444", fg = "#bbb")
@@ -143,24 +143,24 @@ class GUI:
             self.buttonFact.config(bg = "#444", fg = "#bbb")
             self.buttonDiv.config(bg = "#444", fg = "#bbb")
 
-            self.button7.config(bg = "#4f4f4f", fg = "#bbb")
-            self.button8.config(bg = "#4f4f4f", fg = "#bbb")
-            self.button9.config(bg = "#4f4f4f", fg = "#bbb")
+            self.button7.config(bg = "#494949", fg = "#bbb")
+            self.button8.config(bg = "#494949", fg = "#bbb")
+            self.button9.config(bg = "#494949", fg = "#bbb")
             self.buttonMul.config(bg = "#444", fg = "#bbb")
 
-            self.button4.config(bg = "#4f4f4f", fg = "#bbb")
-            self.button5.config(bg = "#4f4f4f", fg = "#bbb")
-            self.button6.config(bg = "#4f4f4f", fg = "#bbb")
+            self.button4.config(bg = "#494949", fg = "#bbb")
+            self.button5.config(bg = "#494949", fg = "#bbb")
+            self.button6.config(bg = "#494949", fg = "#bbb")
             self.buttonSub.config(bg = "#444", fg = "#bbb")
 
-            self.button1.config(bg = "#4f4f4f", fg = "#bbb")
-            self.button2.config(bg = "#4f4f4f", fg = "#bbb")
-            self.button3.config(bg = "#4f4f4f", fg = "#bbb")
+            self.button1.config(bg = "#494949", fg = "#bbb")
+            self.button2.config(bg = "#494949", fg = "#bbb")
+            self.button3.config(bg = "#494949", fg = "#bbb")
             self.buttonAdd.config(bg = "#444", fg = "#bbb")
 
-            self.buttonAbs.config(bg = "#4f4f4f", fg = "#bbb")
-            self.button0.config(bg = "#4f4f4f", fg = "#bbb")
-            self.buttonDot.config(bg = "#4f4f4f", fg = "#bbb")
+            self.buttonAbs.config(bg = "#494949", fg = "#bbb")
+            self.button0.config(bg = "#494949", fg = "#bbb")
+            self.buttonDot.config(bg = "#494949", fg = "#bbb")
             self.buttonEqual.config(bg = "#444", fg = "#bbb")
 
 
@@ -229,5 +229,5 @@ class GUI:
         self.root.bind(("<BackSpace>") ,lambda event:self.guiFuncs.remove())
         self.root.bind("<Key>" ,self.guiFuncs.key_press)
         self.inputField.bind("<Button-1>", lambda event: "break")
-        self.equasionField.bind("<Button-1>", lambda event: "break")
-        # self.equasionField.bind("<Button-1>", lambda event: "break")
+        self.equaionField.bind("<Button-1>", lambda event: "break")
+        # self.equaionField.bind("<Button-1>", lambda event: "break")

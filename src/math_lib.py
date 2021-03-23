@@ -103,9 +103,9 @@ def exp(num, exp):
 
     return num ** exp
 
-def abs(num):
+def absolute(num):
     ##
-    #  @brief abs
+    #  @brief absolute
     #  calculates absolute value of a number
     #
     #  @param num number
