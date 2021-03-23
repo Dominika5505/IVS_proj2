@@ -1,4 +1,5 @@
 from gui_func import Gui_Functions
+import os
 # try:
 # from Tkinter import *
 # import ttk
@@ -13,6 +14,10 @@ import Pmw
     
 class GUI:
     def __init__(self):
+        self.sunIcon = ""
+        self.moonIcon = ""
+        self.switchVar = 1
+ 
         self.create_root()
         self.create_frames()
         self.create_input_field()
@@ -23,8 +28,7 @@ class GUI:
         self.create_buttons()
         self.position_buttons()
         self.create_light_mode_buttons()
-        self.change_light_mode(1)
-        # self.create_tooltips()
+        self.change_light_mode(self.switchVar)
         self.define_keybinds()
 
     def create_root(self):
@@ -66,27 +70,25 @@ class GUI:
         self.equaionField.place(relwidth = 0.95, relheight = 1)
 
     def create_light_mode_buttons(self):
-        self.switchVar = IntVar(value = 1)
+        self.sunIcon = PhotoImage(file = "../imgs/sun_bw.png")
+        self.moonIcon = PhotoImage(file = "../imgs/moon.png")
+        
 
-        self.lightModeButton = Radiobutton(self.switchFrame, text = "Light", variable = self.switchVar,
-                            indicatoron = False, value = 1, bd = 0, command = lambda: self.change_light_mode(1))
-        self.darkModeButton = Radiobutton(self.switchFrame, text = "Dark", variable = self.switchVar,
-                            indicatoron = False, value = 0, bd = 0, command = lambda: self.change_light_mode(0))
+        self.lightModeButton = Radiobutton(self.switchFrame, variable = self.switchVar,
+                            indicatoron = False, value = 1, bd = 0, command = lambda: self.change_light_mode(self.switchVar))
 
         self.lightModeButton.pack(side="left")
-        self.darkModeButton.pack(side="left")
+        self.lightModeButton.place(x = 5, y = 5)
 
-        self.lightModeButton.place(relheight = 1, relwidth = 0.5)
-        self.darkModeButton.place(relheight = 1,relwidth = 0.5, relx = 0.5)
 
     def change_light_mode(self, buttonLightChecked):
         
-        if buttonLightChecked:
+        if buttonLightChecked == 1:
 
             self.switchOuterFrame.config(bg = "#f8f8f8")
             self.switchFrame.config(bg = "#f8f8f8")
-            self.lightModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8")
-            self.darkModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8")
+            self.lightModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8", image = self.sunIcon, activebackground = "#f8f8f8")
+            # self.darkModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8")
 
             self.textFrame.config(bg = "#f8f8f8")
             self.inputFrame.config(bg = "#f8f8f8")
@@ -122,12 +124,11 @@ class GUI:
             self.buttonDot.config(bg = "#fff", fg = "#555")
             self.buttonEqual.config(bg = "#f8f8f8", fg = "#555")
 
+            self.switchVar = 0
         else:
             self.switchOuterFrame.config(bg = "#4f4f4f")
             self.switchFrame.config(bg = "#4f4f4f")
-            self.lightModeButton.config(bg = "#4f4f4f", fg = "#bbb", selectcolor = "#4f4f4f", highlightcolor = "#4f4f4f", highlightbackground = "#4f4f4f")
-            self.darkModeButton.config(bg = "#4f4f4f", fg = "#bbb", selectcolor = "#4f4f4f", highlightcolor = "#4f4f4f", highlightbackground = "#4f4f4f")
-
+            self.lightModeButton.config(bg = "#4f4f4f", fg = "#bbb", selectcolor = "#4f4f4f", highlightcolor = "#4f4f4f", highlightbackground = "#4f4f4f", image = self.moonIcon, activebackground = "#4f4f4f")
 
             self.textFrame.config(bg = "#4f4f4f")
             self.inputFrame.config(bg = "#4f4f4f")
@@ -162,6 +163,8 @@ class GUI:
             self.button0.config(bg = "#494949", fg = "#bbb")
             self.buttonDot.config(bg = "#494949", fg = "#bbb")
             self.buttonEqual.config(bg = "#444", fg = "#bbb")
+
+            self.switchVar = 1
 
 
 
@@ -228,6 +231,7 @@ class GUI:
         self.root.bind(("<Return>") ,lambda event:self.guiFuncs.equal())
         self.root.bind(("<BackSpace>") ,lambda event:self.guiFuncs.remove())
         self.root.bind("<Key>" ,self.guiFuncs.key_press)
+        self.root.bind("<m>" ,lambda event:self.change_light_mode(self.switchVar))
         self.inputField.bind("<Button-1>", lambda event: "break")
         self.equaionField.bind("<Button-1>", lambda event: "break")
-        # self.equaionField.bind("<Button-1>", lambda event: "break")
+        
