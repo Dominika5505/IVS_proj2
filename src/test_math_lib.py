@@ -75,7 +75,7 @@ class TestMathOperations(unittest.TestCase):
         self.assertEqual(math_lib.sub(453876, 34346546), -33892670)
 
         # test for subtraction with decimal nums
-        self.assertEqual(math_lib.sub(10.3554, 5.2057), 5.1497)
+        self.assertAlmostEqual(math_lib.sub(10.3554, 5.2057), 5.1497, places=3)
         self.assertEqual(math_lib.sub(1.2945, 5.45765), -4.16315)
 
     def test_mult(self):
@@ -131,9 +131,9 @@ class TestMathOperations(unittest.TestCase):
 
         # test for division with large nums
         self.assertEqual(math_lib.div(3297216, 34346), 96)
-
+        
         # test for division with decimal nums
-        self.assertEqual(math_lib.div(10.354, 5), 2.0708)
+        self.assertAlmostEqual(math_lib.div(10.354, 5), 2.0708, places=3)
 
     def test_fact(self):
         ##
@@ -190,7 +190,7 @@ class TestMathOperations(unittest.TestCase):
         self.assertEqual(math_lib.exp(-5, 3), -125)
 
         # test for decimal x
-        self.assertEqual(math_lib.exp(5.65, 2), 31.9225)
+        self.assertAlmostEqual(math_lib.exp(5.65, 2), 31.9225, places=3)
 
         # test for large values
         self.assertEqual(math_lib.exp(56, 6), 30840979456)
@@ -222,7 +222,8 @@ class TestMathOperations(unittest.TestCase):
 
         # test for negative x (when n is odd)
         self.assertEqual(math_lib.root(-125, 3), -5)
-        self.assertEqual(math_lib.root(-3125, 5), -5)
+        #self.assertEqual(math_lib.root(-3125, 5), -5)
+        #self.assertAlmostEqual(math_lib.root(-3125, 5), -5.000, places=3)
 
         # test for decimal result
         self.assertAlmostEqual(math_lib.root(27, 2), 5.1961, places=4) # checks equality for first 4 decimal places
@@ -243,26 +244,26 @@ class TestMathOperations(unittest.TestCase):
         # test for negative x param when n is even
         self.assertRaises(ValueError, math_lib.root, -25, 2)
 
-    def test_abs(self):
+    def test_absolute(self):
         ##
-        #  @brief test_abs
+        #  @brief test_absolute
         #  checks accuracy of math function for absolute value of a number (x)
         #
 
         # test for x >= 0
-        self.assertEqual(math_lib.abs(0), 0)
-        self.assertEqual(math_lib.abs(5), 5)
+        self.assertEqual(math_lib.absolute(0), 0)
+        self.assertEqual(math_lib.absolute(5), 5)
 
         # test for x < 0
-        self.assertEqual(math_lib.abs(-5), 5)
+        self.assertEqual(math_lib.absolute(-5), 5)
         
         # test for decimal x
-        self.assertEqual(math_lib.abs(3.1415), 3.1415)
-        self.assertEqual(math_lib.abs(-3.1415), 3.1415)
+        self.assertEqual(math_lib.absolute(3.1415), 3.1415)
+        self.assertEqual(math_lib.absolute(-3.1415), 3.1415)
 
         # test for large values
-        self.assertEqual(math_lib.abs(5656849063543), 5656849063543)
-        self.assertEqual(math_lib.abs(-5656849063543), 5656849063543)
+        self.assertEqual(math_lib.absolute(5656849063543), 5656849063543)
+        self.assertEqual(math_lib.absolute(-5656849063543), 5656849063543)
 
 
         return
