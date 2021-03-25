@@ -10,7 +10,6 @@ from tkinter import *
 # from tkinter import tix
 # from tkinter.tix import Balloon 
 import tkinter.font as tkFont
-import Pmw
     
 class GUI:
     def __init__(self):
