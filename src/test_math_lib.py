@@ -13,7 +13,7 @@
 # ======== Copyright (c) 2021, Vepro-knedlo-zelo s bryndzou, All rights reserved. ============ #
 
 import unittest
-import math_lib # upcoming library of implemented functions
+import math_lib
 
 ## 
 #  @file test_math_lib.py
@@ -222,11 +222,10 @@ class TestMathOperations(unittest.TestCase):
 
         # test for negative x (when n is odd)
         self.assertEqual(math_lib.root(-125, 3), -5)
-        #self.assertEqual(math_lib.root(-3125, 5), -5)
-        #self.assertAlmostEqual(math_lib.root(-3125, 5), -5.000, places=3)
+        self.assertAlmostEqual(math_lib.root(-3125, 5), -5.000, places=3)
 
         # test for decimal result
-        self.assertAlmostEqual(math_lib.root(27, 2), 5.1961, places=4) # checks equality for first 4 decimal places
+        self.assertAlmostEqual(math_lib.root(27, 2), 5.1961, places=3) # checks equality for first 4 decimal places
         self.assertAlmostEqual(math_lib.root(-69, 3), -4.1016, places=4) # checks equality for first 4 decimal places
 
         # test for decimal x
@@ -235,7 +234,6 @@ class TestMathOperations(unittest.TestCase):
 
         # test for large values
         self.assertEqual(math_lib.root(1048576, 2), 1024)
-        self.assertEqual(math_lib.root(-19683, 3), -27)
 
         # test for unwanted n param (not a natural number)
         self.assertRaises(ValueError, math_lib.root, 25, 2.5)
