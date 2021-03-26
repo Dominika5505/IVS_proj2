@@ -1,15 +1,11 @@
 from gui_func import Gui_Functions
 import os
-# try:
-# from Tkinter import *
-# import ttk
-# import tkinter.font as tkFont
-# from ttkwidgets.frames import Balloon
-# except ImportError:
-from tkinter import *
-# from tkinter import tix
-# from tkinter.tix import Balloon 
-import tkinter.font as tkFont
+try:
+    import Tkinter as tk
+    import Tkinter.font as tkFont
+except ImportError:
+    import tkinter as tk
+    import tkinter.font as tkFont
     
 class GUI:
     def __init__(self):
@@ -31,49 +27,49 @@ class GUI:
         self.define_keybinds()
 
     def create_root(self):
-        self.root = Tk()
+        self.root = tk.Tk()
         self.root.resizable(0, 0)
         self.defaultFont = tkFont.Font(root = self.root, family = "Lato", size = 24, weight = "bold")
         self.root.geometry("312x400")
         self.root.title("VKZsB Calculator")
 
     def create_frames(self):
-        self.switchOuterFrame = Frame(self.root, width = 312, height = 30, bd = 0)
+        self.switchOuterFrame = tk.Frame(self.root, width = 312, height = 30, bd = 0)
         self.switchOuterFrame.pack()
 
-        self.switchFrame = Frame(self.switchOuterFrame, bd = 0)
+        self.switchFrame = tk.Frame(self.switchOuterFrame, bd = 0)
         self.switchFrame.pack()
 
         self.switchFrame.place(relwidth = 0.3, relheight = 1)
 
-        self.textFrame = Frame(self.root, width = 312, height = 20)
+        self.textFrame = tk.Frame(self.root, width = 312, height = 20)
         self.textFrame.pack()
         
-        self.inputFrame = Frame(self.root, width = 312, height = 50, bd = 0)
-        self.inputFrame.pack(side = TOP)
+        self.inputFrame = tk.Frame(self.root, width = 312, height = 50, bd = 0)
+        self.inputFrame.pack(side = tk.TOP)
 
-        self.emptyFrame = Frame(self.root, width = 312, height = 5)
+        self.emptyFrame = tk.Frame(self.root, width = 312, height = 5)
         self.emptyFrame.pack()
         
-        self.btnsFrame = Frame(self.root, width = 312, height = 300)
+        self.btnsFrame = tk.Frame(self.root, width = 312, height = 300)
         self.btnsFrame.pack()
 
     def create_input_field(self):
-        self.inputField = Entry(self.inputFrame, font = ("Lato", 14), width = 50, bd = 0, justify = RIGHT, cursor = "arrow")
-        self.inputField.place(bordermode = OUTSIDE, relwidth = 0.95, relheight = 1)
+        self.inputField = tk.Entry(self.inputFrame, font = ("Lato", 14), width = 50, bd = 0, justify = tk.RIGHT, cursor = "arrow")
+        self.inputField.place(bordermode = tk.OUTSIDE, relwidth = 0.95, relheight = 1)
 
     def create_equasion_field(self):
-        self.equaionField = Entry(self.textFrame, font = ('Lato', 11), width = 50, bd = 0, justify = RIGHT, cursor = "arrow")
+        self.equaionField = tk.Entry(self.textFrame, font = ('Lato', 11), width = 50, bd = 0, justify = tk.RIGHT, cursor = "arrow")
 
         self.equaionField.pack()
         self.equaionField.place(relwidth = 0.95, relheight = 1)
 
     def create_light_mode_buttons(self):
-        self.sunIcon = PhotoImage(file = "../imgs/sun_bw.png")
-        self.moonIcon = PhotoImage(file = "../imgs/moon.png")
+        self.sunIcon = tk.PhotoImage(file = "./imgs/sun_bw.png")
+        self.moonIcon = tk.PhotoImage(file = "./imgs/moon.png")
         
 
-        self.lightModeButton = Radiobutton(self.switchFrame, variable = self.switchVar,
+        self.lightModeButton = tk.Radiobutton(self.switchFrame, variable = self.switchVar,
                             indicatoron = False, value = 1, bd = 0, command = lambda: self.change_light_mode(self.switchVar))
 
         self.lightModeButton.pack(side="left")
@@ -87,7 +83,6 @@ class GUI:
             self.switchOuterFrame.config(bg = "#f8f8f8")
             self.switchFrame.config(bg = "#f8f8f8")
             self.lightModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8", image = self.sunIcon, activebackground = "#f8f8f8")
-            # self.darkModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8")
 
             self.textFrame.config(bg = "#f8f8f8")
             self.inputFrame.config(bg = "#f8f8f8")
@@ -169,33 +164,33 @@ class GUI:
 
     def create_buttons(self):
 
-        self.buttonClear = Button(self.btnsFrame, text="Clear", bd=0, borderwidth=0, command=self.guiFuncs.clear_input_field)
-        self.buttonDelete = Button(self.btnsFrame, text="<", bd=0, borderwidth=0, command=self.guiFuncs.remove)
+        self.buttonClear = tk.Button(self.btnsFrame, text="Clear", bd=0, borderwidth=0, command=self.guiFuncs.clear_input_field)
+        self.buttonDelete = tk.Button(self.btnsFrame, text="<", bd=0, borderwidth=0, command=self.guiFuncs.remove)
 
-        self.buttonExp = Button(self.btnsFrame, text="^", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("^"))
-        self.buttonSquare = Button(self.btnsFrame, text="√", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("s"))
-        self.buttonFact = Button(self.btnsFrame, text="x!", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("!"))
-        self.buttonDiv = Button(self.btnsFrame, text="÷", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("/"))
+        self.buttonExp = tk.Button(self.btnsFrame, text="^", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("^"))
+        self.buttonSquare = tk.Button(self.btnsFrame, text="√", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("s"))
+        self.buttonFact = tk.Button(self.btnsFrame, text="x!", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("!"))
+        self.buttonDiv = tk.Button(self.btnsFrame, text="÷", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("/"))
 
-        self.button7 = Button(self.btnsFrame, text="7", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(7))
-        self.button8 = Button(self.btnsFrame, text="8", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(8))
-        self.button9 = Button(self.btnsFrame, text="9", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(9))
-        self.buttonMul = Button(self.btnsFrame, text="×", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("*"))
+        self.button7 = tk.Button(self.btnsFrame, text="7", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(7))
+        self.button8 = tk.Button(self.btnsFrame, text="8", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(8))
+        self.button9 = tk.Button(self.btnsFrame, text="9", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(9))
+        self.buttonMul = tk.Button(self.btnsFrame, text="×", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("*"))
 
-        self.button4 = Button(self.btnsFrame, text="4", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(4))
-        self.button5 = Button(self.btnsFrame, text="5", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(5))
-        self.button6 = Button(self.btnsFrame, text="6", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(6))
-        self.buttonSub = Button(self.btnsFrame, text="-", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("-"))
+        self.button4 = tk.Button(self.btnsFrame, text="4", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(4))
+        self.button5 = tk.Button(self.btnsFrame, text="5", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(5))
+        self.button6 = tk.Button(self.btnsFrame, text="6", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(6))
+        self.buttonSub = tk.Button(self.btnsFrame, text="-", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("-"))
 
-        self.button1 = Button(self.btnsFrame, text="1", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(1))
-        self.button2 = Button(self.btnsFrame, text="2", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(2))
-        self.button3 = Button(self.btnsFrame, text="3", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(3))
-        self.buttonAdd = Button(self.btnsFrame, text="+", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("+"))
+        self.button1 = tk.Button(self.btnsFrame, text="1", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(1))
+        self.button2 = tk.Button(self.btnsFrame, text="2", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(2))
+        self.button3 = tk.Button(self.btnsFrame, text="3", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(3))
+        self.buttonAdd = tk.Button(self.btnsFrame, text="+", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("+"))
 
-        self.buttonAbs = Button(self.btnsFrame, text="|x|", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("a"))
-        self.button0 = Button(self.btnsFrame, text="0", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(0))
-        self.buttonDot = Button(self.btnsFrame, text=".", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("."))
-        self.buttonEqual = Button(self.btnsFrame, text="=", bd=0, borderwidth=0, command=self.guiFuncs.equal)
+        self.buttonAbs = tk.Button(self.btnsFrame, text="|x|", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("a"))
+        self.button0 = tk.Button(self.btnsFrame, text="0", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string(0))
+        self.buttonDot = tk.Button(self.btnsFrame, text=".", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("."))
+        self.buttonEqual = tk.Button(self.btnsFrame, text="=", bd=0, borderwidth=0, command=self.guiFuncs.equal)
 
     def position_buttons(self):
         self.buttonClear.place(relwidth = 0.8, height = 50)
