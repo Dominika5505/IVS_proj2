@@ -70,8 +70,8 @@ class GUI:
         self.equaionField.place(relwidth = 0.95, relheight = 1)
 
     def create_light_mode_buttons(self):
-        self.sunIcon = PhotoImage(file = "../imgs/sun_bw.png")
-        self.moonIcon = PhotoImage(file = "../imgs/moon.png")
+        self.sunIcon = PhotoImage(file = "./imgs/sun_bw.png")
+        self.moonIcon = PhotoImage(file = "./imgs/moon.png")
         
 
         self.lightModeButton = Radiobutton(self.switchFrame, variable = self.switchVar,
