@@ -99,5 +99,5 @@ if __name__ == '__main__':
 
     nums = read_input()
     s = deviation_calc(nums)
-    print(s)
+    print("The value of the standard deviation is: " + str(s))
     
