@@ -1,4 +1,8 @@
-from tkinter import END
+try:
+    from Tkinter import END
+except ImportError:
+    from tkinter import END
+  
 from calculator import Calculator, is_int, int_or_float, absolute
 from decimal import Decimal
 import re
@@ -18,11 +22,9 @@ class Gui_Functions:
         self.equationField = equationField
         self.doubleClear = False
         self.addAbs = False
-        # self.absPipeDeleted = 0
         self.deleteAbs = False
 
     def calculate(self, eq):
-        # return str(eq)
         self.calculator = Calculator(eq)
         i = 0
         while i < self.calculator.eqArrayLen:
@@ -164,8 +166,8 @@ class Gui_Functions:
         elif self.addPar:
             self.add_paranth(input)
         elif self.equation == "" and not is_int(input): 
-            if input != "." or input != "√":
-                self.conc_string("0" + input)
+            self.equation = "0" + self.equation
+            self.conc_string(input)
         elif self.equation != "" and self.equation[0] == "-":
             self.equation = "0" + self.equation
             self.conc_string(input)
@@ -185,10 +187,13 @@ class Gui_Functions:
             self.addPar = True
         
         if self.addPar:
-            self.add_paranth('')
+            self.add_paranth("")
         
         self.inputField.delete(0, END)
 
+        if self.equation[0] == "-":
+            self.div_string("")
+        
         if self.equation == "":
             self.inputField.insert(0, "0")
             self.equation = "0"
@@ -198,6 +203,7 @@ class Gui_Functions:
 
         self.equationField.delete(0, END)
         self.equationField.insert(0, self.equation)
+
         if self.result == "ERROR!":
             self.toDelete = True
         else:
