@@ -10,24 +10,24 @@ import sys
 
 class Gui_Functions:
     
-    def __init__(self, inputField, equationField):
+    def __init__(self, inputField, expressionField):
         self.inputField = inputField
-        self.equation = ""
+        self.expression = ""
         self.result = ""
         self.toDelete = False
         self.addPar = False
         self.doublePar = False
         self.inPar = False
         self.calculator = ""
-        self.equationField = equationField
+        self.expressionField = expressionField
         self.doubleClear = False
         self.addAbs = False
         self.deleteAbs = False
 
-    def calculate(self, eq):
-        self.calculator = Calculator(eq)
+    def calculate(self, expr):
+        self.calculator = Calculator(expr)
         i = 0
-        while i < self.calculator.eqArrayLen:
+        while i < self.calculator.exprArrayLen:
             try:
                 self.calculator.solveSquareRoot()
                 self.calculator.solveExp()
@@ -40,7 +40,7 @@ class Gui_Functions:
 
             i += 1
 
-        resultStr = str(self.calculator.eqArray[0])
+        resultStr = str(self.calculator.exprArray[0])
 
         if absolute(Decimal(resultStr).as_tuple().exponent) > 5:
             return str(round(int_or_float(resultStr), 5))
@@ -56,14 +56,14 @@ class Gui_Functions:
 
 
     def add_abs(self):
-        findNum = re.search(r'[-]?\d+[.]?\d*$', self.equation)
+        findNum = re.search(r'[-]?\d+[.]?\d*$', self.expression)
         foundNum = int_or_float(findNum.group()) if findNum else None
 
         if foundNum:
             numLen = len(str(foundNum))
 
-            if self.equation == ("0" + str(foundNum)):
-                self.equation = ""
+            if self.expression == ("0" + str(foundNum)):
+                self.expression = ""
                 self.inputField.delete(0, END)
                 
             else:
@@ -76,17 +76,17 @@ class Gui_Functions:
             self.conc_string(foundNum)
 
     def delete_abs(self):
-        findNum = re.search(r'[|][-]?\d+[.]?\d*[|]$', self.equation)
+        findNum = re.search(r'[|][-]?\d+[.]?\d*[|]$', self.expression)
         foundNum = str(findNum.group()) if findNum else None
 
         if foundNum:
             numLen = len(foundNum)
 
-            self.equation = self.equation[:(-numLen + 1)]
+            self.expression = self.expression[:(-numLen + 1)]
 
 
     def check_root(self):
-        findNum = re.search(r'[-]?\d+[.]?\d*$', self.equation)
+        findNum = re.search(r'[-]?\d+[.]?\d*$', self.expression)
         foundNum = int_or_float(findNum.group()) if findNum else None
 
         if foundNum:
@@ -97,7 +97,7 @@ class Gui_Functions:
 
             
     def add_paranth(self, input):
-        findNumEnd = re.search(r'[-]?\d+[.]?\d*^|[-]?\d+[.]?\d*$', self.equation)
+        findNumEnd = re.search(r'[-]?\d+[.]?\d*^|[-]?\d+[.]?\d*$', self.expression)
         foundNumEnd = int_or_float(findNumEnd.group()) if findNumEnd else None
 
         self.inPar = False
@@ -119,17 +119,17 @@ class Gui_Functions:
             self.conc_string(foundNumEnd + input)
 
     def add_decimal(self):
-        findNum = re.search(r'[-]?\d+[.]\d*$', self.equation)
+        findNum = re.search(r'[-]?\d+[.]\d*$', self.expression)
         foundNum = str(findNum.group()) if findNum else None
         
         if not foundNum:
-            if self.equation == "" or not is_int(self.equation[len(self.equation) - 1]):
+            if self.expression == "" or not is_int(self.expression[len(self.expression) - 1]):
                 self.conc_string("0.")
             else:
                 self.conc_string(".")
 
     def conc_string(self, input):
-        self.equation += str(input)
+        self.expression += str(input)
         current = self.inputField.get()
         self.inputField.delete(0, END)
         self.inputField.insert(0, str(current) + str(input))
@@ -137,11 +137,11 @@ class Gui_Functions:
     def div_string(self, input):
         if self.toDelete:
             self.inputField.delete(0, END)
-            self.inputField.insert(0, self.equation)        
+            self.inputField.insert(0, self.expression)        
             self.toDelete = False
 
         if self.doubleClear:
-            self.equationField.delete(0, END)
+            self.expressionField.delete(0, END)
             self.doubleClear = False
         
 
@@ -150,7 +150,7 @@ class Gui_Functions:
                 self.addPar = True
 
         if not self.inPar:
-            if self.equation.endswith("-") or self.equation.endswith("+") or self.equation.endswith("/") or self.equation.endswith("*") or self.equation.endswith("^") or self.equation.endswith("√"):
+            if self.expression.endswith("-") or self.expression.endswith("+") or self.expression.endswith("/") or self.expression.endswith("*") or self.expression.endswith("^") or self.expression.endswith("√"):
                 if input == "-":
                     self.inPar = True
         
@@ -165,11 +165,11 @@ class Gui_Functions:
             self.add_abs()  
         elif self.addPar:
             self.add_paranth(input)
-        elif self.equation == "" and not is_int(input): 
-            self.equation = "0" + self.equation
+        elif self.expression == "" and not is_int(input): 
+            self.expression = "0" + self.expression
             self.conc_string(input)
-        elif self.equation != "" and self.equation[0] == "-":
-            self.equation = "0" + self.equation
+        elif self.expression != "" and self.expression[0] == "-":
+            self.expression = "0" + self.expression
             self.conc_string(input)
 
         else: 
@@ -180,7 +180,7 @@ class Gui_Functions:
         self.inputField.delete(0, END)
         if self.calculator:
             self.calculator.clearArray()
-        self.equation = ""
+        self.expression = ""
 
     def equal(self):
         if self.inPar:
@@ -191,35 +191,35 @@ class Gui_Functions:
         
         self.inputField.delete(0, END)
 
-        if self.equation[0] == "-":
+        if self.expression[0] == "-":
             self.div_string("")
         
-        if self.equation == "":
+        if self.expression == "":
             self.inputField.insert(0, "0")
-            self.equation = "0"
+            self.expression = "0"
         else:
-            self.result = self.calculate(self.equation)
+            self.result = self.calculate(self.expression)
             self.inputField.insert(0, self.result)
 
-        self.equationField.delete(0, END)
-        self.equationField.insert(0, self.equation)
+        self.expressionField.delete(0, END)
+        self.expressionField.insert(0, self.expression)
 
         if self.result == "ERROR!":
             self.toDelete = True
         else:
-            self.equation = self.result
+            self.expression = self.result
 
     def remove(self):
-        if self.equation != "":
-            if self.equation.endswith(")"): 
+        if self.expression != "":
+            if self.expression.endswith(")"): 
                 self.inPar = True 
                 self.doublePar = True
-            if self.equation.endswith("|"): 
+            if self.expression.endswith("|"): 
                 self.delete_abs()
 
-            self.equation = self.equation[:-1]
+            self.expression = self.expression[:-1]
             self.inputField.delete(0, END)
-            self.inputField.insert(0, self.equation)
+            self.inputField.insert(0, self.expression)
 
     def key_press(self, event):
         key = event.char
