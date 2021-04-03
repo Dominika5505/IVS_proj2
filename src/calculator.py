@@ -296,30 +296,50 @@ class Calculator:
 
         ## if symbol is in element
         if absSymbol != -1:
-            ## ABS NOT WORKING (after |num|num doesnt throw error or always throws error with this condition) !!!!!!!!!!!!!!!
-            if self.exprArray[numIndex + 1]: 
-                if is_int(self.exprArray[numIndex + 20]):
-                    raise Exception("Bad numbers") 
+            ## removes pipes from element and convert to number
             numFound = int_or_float(self.exprArray[numIndex][absSymbol + 1:-1])
+            ## replaces element with absolute value of converted number
             self.exprArray[numIndex] = str(absolute(numFound))
 
+    ##
+    #  @brief solves expressions with negative numbers
+    #  
+    #  @param self the object pointer
+    #  @param numIndex index of number in array
+    #
     def solve_par(self, numIndex):
+        ## element in index of array
         num = self.exprArray[numIndex]
-        x = num.find("(")
-
-        if x != -1:
+        ## if parantheses symbol is in element
+        if num.find("(") != -1:
+            ## searches for decimal or integer number in element
             numExt = re.search(r'[-]?\d+[.]?\d*', num)
+            ## returns number as string or None if number wasn't found
             newNum = str(numExt.group()) if numExt else None
 
+            ## if number was found
             if newNum:
+                ## if the element before is minus sign
                 if self.exprArray[numIndex - 1] == "-":
+                    ## replaces number with its absolute value
                     newNum = absolute(int_or_float(newNum))
+                    ## minus sign replaces by plus sign
                     self.exprArray[numIndex - 1] = "+"
+                ## replaces element by new number as string
                 self.exprArray[numIndex] = str(newNum)
 
+    ##
+    #  @brief converts string to number
+    #  
+    #  @param self the object pointer
+    #  @param numIndex index of number in array
+    #
     def convert_to_num(self, numIndex):
+        ## element in index of array
         num = self.exprArray[numIndex]
+        ## checks if num is int
         if is_int(num):
+            ## replaces element as int or float
             self.exprArray[numIndex] = int_or_float(self.exprArray[numIndex])
 
     def solve_fact(self, numIndex):

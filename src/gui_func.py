@@ -29,22 +29,27 @@ class Gui_Functions:
         i = 0
         while i < self.calculator.exprArrayLen:
             try:
-                self.calculator.solveSquareRoot()
-                self.calculator.solveExp()
-                self.calculator.solveMult()
-                self.calculator.solveDiv()
-                self.calculator.solveSub()
-                self.calculator.solveSum()
+                self.calculator.solve_square_root()
+                self.calculator.solve_exp()
+                self.calculator.solve_mult()
+                self.calculator.solve_div()
+                self.calculator.solve_sub()
+                self.calculator.solve_sum()
             except:
                 return "ERROR!"
 
             i += 1
 
+        if self.calculator.exprArrayLen > 1:
+            return "ERROR!"
+
         resultStr = str(self.calculator.exprArray[0])
+        # resultStr = str(self.calculator.exprArray)
 
         if absolute(Decimal(resultStr).as_tuple().exponent) > 5:
             return str(round(int_or_float(resultStr), 5))
-        else: return resultStr
+        else: 
+            return resultStr
 
 
     def abs_test(self):
@@ -179,7 +184,7 @@ class Gui_Functions:
     def clear_input_field(self):
         self.inputField.delete(0, END)
         if self.calculator:
-            self.calculator.clearArray()
+            self.calculator.clear_array()
         self.expression = ""
 
     def equal(self):
