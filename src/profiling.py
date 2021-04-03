@@ -23,15 +23,17 @@ import sys
 #  @brief Implementation of the math function for standard deviation
 #
 
+##
+#  @brief read_input
+#  reads nums from stdin and adds them to a list 
+#
+#  @return list of nums
+#
 def read_input():
-    ##
-    #  @brief read_input
-    #  reads nums from stdin and adds them to a list 
-    #
-    #  @return list of nums
+    
 
     nums = []
-    line = sys.stdin.readline() # reading of a first line from stdin
+    line = sys.stdin.readline() ## reading of a first line from stdin
 
     for num in line.split():
         num = int(num)
@@ -39,54 +41,58 @@ def read_input():
 
     return nums
 
+##
+#  @brief deviation_calc
+#  calculates standard deviation
+#
+#  @param nums list with numbers
+#
+#  @return value of standard deviation
+#
 def deviation_calc(nums):
-    ##
-    #  @brief deviation_calc
-    #  calculates standard deviation
-    #
-    #  @param nums list with numbers
-    #
-    #  @return value of standard deviation
 
     n = len(nums)
 
     return math_lib.root((1/(n-1))*(sum_nums(squared_nums(nums))-n*math_lib.exp(mean_calc(nums), 2) ), 2)
 
+##
+#  @brief mean_calc
+#  calculates arithmetic mean of list of nums
+#
+#  @param nums list of number
+#
+#  @return value of mean
+#
 def mean_calc(nums):
-    ##
-    #  @brief mean_calc
-    #  calculates arithmetic mean of list of nums
-    #
-    #  @param nums list of number
-    #
-    #  @return value of mean
-
+    
     return math_lib.div(sum_nums(nums), len(nums)) 
 
+##
+#  @brief sum_nums
+#  calculates sum of a list of nums
+#
+#  @param nums list of numbers
+#
+#  @return value of sum of list
+#
 def sum_nums(nums):
-    ##
-    #  @brief sum_nums
-    #  calculates sum of a list of nums
-    #
-    #  @param nums list of numbers
-    #
-    #  @return value of sum of list
-
+    
     sum = 0
     for num in nums:
         sum = math_lib.sum(sum, num)
 
     return sum
 
+##
+#  @brief squared_nums
+#  creates a list of squared nums from a different list 
+#
+#  @param nums list of numbers
+#
+#  @return list of squared nums
+#
 def squared_nums(nums):
-    ##
-    #  @brief squared_nums
-    #  creates a list of squared nums from a different list 
-    #
-    #  @param nums list of numbers
-    #
-    #  @return list of squared nums
-
+    
     sqrdNums = []
 
     for num in nums:
@@ -94,9 +100,8 @@ def squared_nums(nums):
 
     return sqrdNums   
 
-# start of a programme
+## start of a programme
 if __name__ == '__main__':
-
     nums = read_input()
     s = deviation_calc(nums)
     print("The value of the standard deviation is: " + str(s))

@@ -22,80 +22,87 @@
 #  @brief Implementation of the mathematic functions library
 #
 
+##
+#  @brief sum
+#  adds two numbers
+#
+#  @param num1 first number for addition
+#  @param num2 second number for addition
+#
+#  @return value of addition of two numbers
+#
 def sum(num1, num2):
-    ##
-    #  @brief sum
-    #  adds two numbers
-    #
-    #  @param num1 first number for addition
-    #  @param num2 second number for addition
-    #
-    #  @return value of addition of two numbers
 
     return num1 + num2
 
+##
+#  @brief sub
+#  subtracts two numbers
+#
+#  @param num1 first number for subtraction
+#  @param num2 second number for subtraction
+#
+#  @return value of subtraction of two numbers
+#
 def sub(num1, num2):
-    ##
-    #  @brief sub
-    #  subtracts two numbers
-    #
-    #  @param num1 first number for subtraction
-    #  @param num2 second number for subtraction
-    #
-    #  @return value of subtraction of two numbers
-
+    
     return num1 - num2
 
+##
+#  @brief mult
+#  multiples two numbers
+#
+#  @param num1 first number for multiplication
+#  @param num2 second number for multiplication
+#
+#  @return value of multiplication of two numbers
+#
 def mult(num1, num2):
-    ##
-    #  @brief mult
-    #  multiples two numbers
-    #
-    #  @param num1 first number for multiplication
-    #  @param num2 second number for multiplication
-    #
-    #  @return value of multiplication of two numbers
-
+    
     return num1 * num2
 
+##
+#  @brief div
+#  divides two numbers
+#
+#  @param num1 first number for division
+#  @param num2 second number for division
+#
+#  @return value of division of two numbers
+#
 def div(num1, num2):
-    ##
-    #  @brief div
-    #  divides two numbers
-    #
-    #  @param num1 first number for division
-    #  @param num2 second number for division
-    #
-    #  @return value of division of two numbers
-
+    
     if (num2 == 0):
         raise ZeroDivisionError
 
     return num1 / num2
 
+##
+#  @brief fact
+#  calculates factorial of a number
+#
+#  @param num number to factore
+#
+#  @return value of factorial of a number
+#
 def fact(num):
-    ##
-    #  @brief fact
-    #  calculates factorial of a number
-    #
-    #  @param num number to factore
-    #
-    #  @return value of factorial of a number
-
+    
     if (num < 0) or isinstance(num, float):
         raise ValueError
 
     return 1 if (num==1 or num==0) else num * fact(num - 1)
 
+##
+#  @brief exp
+#  calculates exponent of a number
+#
+#  @param num base of power
+#  @param exp exponent of power
+#
+#  @return value of exponentiation
+#
 def exp(num, exp):
-    ##
-    #  @brief exp
-    #  calculates exponent of a number
-    #
-    #  @param num base of power
-    #  @param exp exponent of power
-    #
-    #  @return value of exponentiation
+    
     if exp == 0:
         return 1
     if (exp < 0) or isinstance(exp, float):
@@ -103,27 +110,29 @@ def exp(num, exp):
 
     return num ** exp
 
+##
+#  @brief absolute
+#  calculates absolute value of a number
+#
+#  @param num number
+#
+#  @return absolute value of the number
+#
 def absolute(num):
-    ##
-    #  @brief absolute
-    #  calculates absolute value of a number
-    #
-    #  @param num number
-    #
-    #  @return absolute value of the number
-
+    
     return -num if(num < 0) else num
 
+##
+#  @brief div
+#  calculates square root of a number
+#
+#  @param num radicand of root
+#  @param deg degree of root
+#
+#  @return value of n-th root
+#
 def root(num, deg):
-    ##
-    #  @brief div
-    #  calculates square root of a number
-    #
-    #  @param num radicand of root
-    #  @param deg degree of root
-    #
-    #  @return value of n-th root
-
+    
     if deg % 2 == 0:
         if num < 0:
             raise ValueError
