@@ -24,9 +24,6 @@
 ## @package Gui_Functions
 #  Gui input and output formatting.
 from gui_func import Gui_Functions
-## @package os
-#  OS routines for NT or Posix depending on what system we're on.
-import os
 try:
     ## @package Tkinter
     #  Library with gui modules.
@@ -145,8 +142,8 @@ class GUI:
         self.helpDarkIcon = tk.PhotoImage(file = "./imgs/help_dark_icon.png")
         ## saves path to light help icon
         self.helpLightIcon = tk.PhotoImage(file = "./imgs/help_light_icon.png")
-        ## creates and places help button
-        self.helpButton = tk.Button(self.settingsFrame, bd = 0, borderwidth = 0)
+        ## creates and places help button, which calls function, that opens help pdf
+        self.helpButton = tk.Button(self.settingsFrame, bd = 0, borderwidth = 0, command = lambda:self.guiFuncs.open_help())
         self.helpButton.pack()
         self.helpButton.place(x = 5, y = 6)
 
@@ -358,6 +355,8 @@ class GUI:
         self.root.bind(("<BackSpace>") ,lambda event:self.guiFuncs.remove())
         ## pressed key "m" calls self function, which changes light mode
         self.root.bind("<m>" ,lambda event:self.change_light_mode(self.switchVar))
+        ## pressed "h" calls function, that opens help pdf
+        self.root.bind("<h>" ,lambda event:self.guiFuncs.open_help())
         ## any other pressed key is sent to gui_func function, which sorts them out
         self.root.bind("<Key>" ,self.guiFuncs.key_press)
         ## secures, that input field cannot be clicked on

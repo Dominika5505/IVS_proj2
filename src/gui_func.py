@@ -36,6 +36,9 @@ from decimal import Decimal
 ## @package re
 #  Support for regular expressions (RE).
 import re
+## @package os
+#  OS routines for NT or Posix depending on what system we're on.
+import os
 
 ##
 #  @brief formates input and output from gui 
@@ -107,6 +110,14 @@ class Gui_Functions:
         ## else value is returned
         else: 
             return resultStr
+
+    ## 
+    #  @brief open help pdf with 
+    #  
+    #  @param self the object pointer
+    #
+    def open_help(self):
+        os.startfile("help.pdf")
 
     ## 
     #  @brief add absolute value pipes (|) around number
