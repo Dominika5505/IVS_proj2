@@ -92,6 +92,7 @@ class GUI:
             self.equaionField.config(bg = "#f8f8f8", fg = "#999")
 
             self.buttonClear.config(bg = "#f8f8f8", fg = "#555")
+            self.buttonAbs.config(bg = "#f8f8f8", fg = "#555")
             self.buttonDelete.config(bg = "#f8f8f8", fg = "#555")
             self.buttonExp.config(bg = "#f8f8f8", fg = "#555")
             self.buttonSquare.config(bg = "#f8f8f8", fg = "#555")
@@ -113,7 +114,7 @@ class GUI:
             self.button3.config(bg = "#fff", fg = "#555")
             self.buttonAdd.config(bg = "#f8f8f8", fg = "#555")
 
-            self.buttonAbs.config(bg = "#fff", fg = "#555")
+            self.buttonAns.config(bg = "#fff", fg = "#555")
             self.button0.config(bg = "#fff", fg = "#555")
             self.buttonDot.config(bg = "#fff", fg = "#555")
             self.buttonEqual.config(bg = "#f8f8f8", fg = "#555")
@@ -132,6 +133,7 @@ class GUI:
             self.equaionField.config(bg = "#4f4f4f", fg = "#888")
 
             self.buttonClear.config(bg = "#444", fg = "#bbb")
+            self.buttonAbs.config(bg = "#444", fg = "#bbb")
             self.buttonDelete.config(bg = "#444", fg = "#bbb")
             self.buttonExp.config(bg = "#444", fg = "#bbb")
             self.buttonSquare.config(bg = "#444", fg = "#bbb")
@@ -153,7 +155,8 @@ class GUI:
             self.button3.config(bg = "#494949", fg = "#bbb")
             self.buttonAdd.config(bg = "#444", fg = "#bbb")
 
-            self.buttonAbs.config(bg = "#494949", fg = "#bbb")
+            # self.buttonAbs.config(bg = "#494949", fg = "#bbb")
+            self.buttonAns.config(bg = "#494949", fg = "#bbb")
             self.button0.config(bg = "#494949", fg = "#bbb")
             self.buttonDot.config(bg = "#494949", fg = "#bbb")
             self.buttonEqual.config(bg = "#444", fg = "#bbb")
@@ -164,7 +167,8 @@ class GUI:
 
     def create_buttons(self):
 
-        self.buttonClear = tk.Button(self.btnsFrame, text="Clear", bd=0, borderwidth=0, command=self.guiFuncs.clear_input_field)
+        self.buttonClear = tk.Button(self.btnsFrame, text="Clear", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("c"))
+        self.buttonAns = tk.Button(self.btnsFrame, text="Ans", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("n"))
         self.buttonDelete = tk.Button(self.btnsFrame, text="<", bd=0, borderwidth=0, command=self.guiFuncs.remove)
 
         self.buttonExp = tk.Button(self.btnsFrame, text="^", bd=0, borderwidth=0, command=lambda: self.guiFuncs.div_string("^"))
@@ -193,12 +197,15 @@ class GUI:
         self.buttonEqual = tk.Button(self.btnsFrame, text="=", bd=0, borderwidth=0, command=self.guiFuncs.equal)
 
     def position_buttons(self):
-        self.buttonClear.place(relwidth = 0.8, height = 50)
-        self.buttonDelete.place(relwidth = 0.2, height = 50, relx = 0.8)
+        self.buttonClear.place(relwidth = 0.75, height = 50)
+        # self.buttonAns.place(relwidth = 0.25, height = 50, relx = 0.50)
+        self.buttonDelete.place(relwidth = 0.25, height = 50, relx = 0.75)
 
-        self.buttonExp.place(relwidth = 0.25, height = 50, y = 50)
-        self.buttonSquare.place(relwidth = 0.25, height = 50, relx = 0.25, y = 50)
-        self.buttonFact.place(relwidth = 0.25, height = 50, relx = 0.5, y = 50)
+
+        self.buttonAbs.place(relwidth = 0.19, height = 50, y = 50)
+        self.buttonExp.place(relwidth = 0.19, height = 50, y = 50, relx = 0.19)
+        self.buttonSquare.place(relwidth = 0.19, height = 50, relx = 0.38, y = 50)
+        self.buttonFact.place(relwidth = 0.19, height = 50, relx = 0.57, y = 50)
         self.buttonDiv.place(relwidth = 0.25, height = 50, relx = 0.75, y = 50)
 
         self.button7.place(relwidth = 0.25, height = 50, y = 100)
@@ -216,7 +223,8 @@ class GUI:
         self.button3.place(relwidth = 0.25, height = 50, relx = 0.5, y = 200)
         self.buttonAdd.place(relwidth = 0.25, height = 50, relx = 0.75, y = 200)
 
-        self.buttonAbs.place(relwidth = 0.25, height = 50, y = 250)
+        self.buttonAns.place(relwidth = 0.25, height = 50, y = 250)
+        # self.buttonAbs.place(relwidth = 0.25, height = 50, y = 250)
         self.button0.place(relwidth = 0.25, height = 50, relx = 0.25, y = 250)
         self.buttonDot.place(relwidth = 0.25, height = 50, relx = 0.5, y = 250)
         self.buttonEqual.place(relwidth = 0.25, height = 50, relx = 0.75, y = 250)
