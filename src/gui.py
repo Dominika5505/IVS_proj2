@@ -99,17 +99,9 @@ class GUI:
     #  @param self the object pointer
     #
     def create_frames(self):
-        ## outer frame for switch and help frame
+        ## frame for light mode and help buttons
         self.settingsFrame = tk.Frame(self.root, width = 312, height = 30, bd = 0)
         self.settingsFrame.pack()
-        ## frame for switch light mode buttons
-        self.switchFrame = tk.Frame(self.settingsFrame, bd = 0)
-        self.switchFrame.pack()
-        self.switchFrame.place(relwidth = 0.5, relheight = 1)
-        ## frame for help button
-        self.helpFrame = tk.Frame(self.settingsFrame, bd = 0)
-        self.helpFrame.pack()
-        self.helpFrame.place(relwidth = 0.5, relheight = 1, relx = 0.5)
         ## frame for expression field
         self.textFrame = tk.Frame(self.root, width = 312, height = 20)
         self.textFrame.pack()
@@ -154,9 +146,9 @@ class GUI:
         ## saves path to light help icon
         self.helpLightIcon = tk.PhotoImage(file = "./imgs/help_light_icon.png")
         ## creates and places help button
-        self.helpButton = tk.Button(self.helpFrame, bd = 0, borderwidth = 0)
+        self.helpButton = tk.Button(self.settingsFrame, bd = 0, borderwidth = 0)
         self.helpButton.pack()
-        self.helpButton.place(y = 6, relx = 0.8)
+        self.helpButton.place(x = 5, y = 6)
 
     ## 
     #  @brief creates light mode button
@@ -170,11 +162,11 @@ class GUI:
         self.moonIcon = tk.PhotoImage(file = "./imgs/moon.png")
         
         ## creates button to switch light mode which calls change_light_mode function on click
-        self.lightModeButton = tk.Radiobutton(self.switchFrame, variable = self.switchVar,
+        self.lightModeButton = tk.Radiobutton(self.settingsFrame, variable = self.switchVar,
                             indicatoron = False, value = 1, bd = 0, command = lambda: self.change_light_mode(self.switchVar))
         ## place switch button
         self.lightModeButton.pack(side="left")
-        self.lightModeButton.place(x = 5, y = 5)
+        self.lightModeButton.place(x = 32, y = 5)
 
     ## 
     #  @brief changes light mode
@@ -187,12 +179,9 @@ class GUI:
         if buttonLightChecked == 1:
             ## sets colors of frames
             self.settingsFrame.config(bg = "#f8f8f8")
-            self.switchFrame.config(bg = "#f8f8f8")
             ## sets image and colors of button
             self.lightModeButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", selectcolor = "#f8f8f8", image = self.sunIcon, activebackground = "#f8f8f8")
 
-            ## sets colors of frame
-            self.helpFrame.config(bg = "#f8f8f8")
             ## sets image and colors of button
             self.helpButton.config(bg = "#f8f8f8", fg = "#555", highlightcolor = "#f8f8f8", highlightbackground = "#f8f8f8", activebackground = "#f8f8f8", image = self.helpDarkIcon)
 
@@ -239,12 +228,9 @@ class GUI:
         else:
             ## sets colors of frames
             self.settingsFrame.config(bg = "#4f4f4f")
-            self.switchFrame.config(bg = "#4f4f4f")
             ## sets image and colors of button
             self.lightModeButton.config(bg = "#4f4f4f", fg = "#bbb", selectcolor = "#4f4f4f", highlightcolor = "#4f4f4f", highlightbackground = "#4f4f4f", image = self.moonIcon, activebackground = "#4f4f4f")
 
-            ## sets colors of frame
-            self.helpFrame.config(bg = "#4f4f4f")
             ## sets image and colors of button
             self.helpButton.config(bg = "#4f4f4f", fg = "#bbb", highlightcolor = "#4f4f4f", highlightbackground = "#4f4f4f", activebackground = "#4f4f4f", image = self.helpLightIcon)
 
