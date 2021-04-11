@@ -342,13 +342,24 @@ class Calculator:
             ## replaces element as int or float
             self.exprArray[numIndex] = int_or_float(self.exprArray[numIndex])
 
+    ##
+    #  @brief converts string to number
+    #  
+    #  @param self the object pointer
+    #  @param numIndex index of number in array
+    #
     def solve_fact(self, numIndex):
+        ## element in index of array
         num = self.exprArray[numIndex]
-        x = num.find("!")
 
-        if x != -1:
+        ## if exclamation mark is in element
+        if num.find("!") != -1:
+            ## searches for decimal or integer number in element
             numExt = re.search(r'[-]?\d+[.]?\d*', num)
+            ## returns number as int or float value or None if number wasn't found
             newNum = int_or_float(numExt.group()) if numExt else None
 
+            ## if number was found
             if newNum:
+                ## replaces element with result of factorial
                 self.exprArray[numIndex] = str(fact(newNum))
