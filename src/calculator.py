@@ -67,17 +67,20 @@ class Calculator:
     #  Divides passed expression string into array.
     #  Solves factorial, absolute values, removes parantheses, and converts string to number
     def __init__(self, exprString):
+        ## divides expression string into array of operands and numbers as strings
         self.exprArray = re.findall(r'[+-\/\*\^√]+|[|]?[(]?[-]?\d+[.]?\d*[)]?[!]?[|]?', exprString)  
-
+        ## solves factorial, absolute values, occurrence of parantheses in loop
         for num in range(len(self.exprArray)):
             try:
                 self.solve_fact(num)
                 self.solve_abs(num)
                 self.solve_par(num)
+                ## each element that is number is converted to number 
                 self.convert_to_num(num)
+            ## if error occurred stops solving and breaks out of loop (error is already stored in result)
             except:
                 break
-
+        ## saves length of array with expression
         self.exprArrayLen = len(self.exprArray)
 
     ## 
