@@ -15,4 +15,4 @@ Vepřo-knedlo-zelo s bryndzou
 Licence
 -------
 
-Tento program je poskytovan...
+Tento program je poskytovan [GNU v3.0 licencí](https://github.com/Dominika5505/IVS_proj2/blob/master/LICENSE)
