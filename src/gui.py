@@ -82,13 +82,13 @@ class GUI:
         ## sets app not to be resized
         self.root.resizable(0, 0)
         ## sets apps icon
-        self.root.iconbitmap('imgs/icon2.ico')
+        self.root.iconbitmap('imgs/icon.ico')
         ## sets default font of app
         self.defaultFont = tkFont.Font(root = self.root, family = "Lato", size = 24, weight = "bold")
         ## sets dimensions of an app
         self.root.geometry("312x400")
         ## sets title of an app
-        self.root.title("VKZsB Calculator")
+        self.root.title("Kalkulačka 1.0")
 
     ## 
     #  @brief creates main frames
