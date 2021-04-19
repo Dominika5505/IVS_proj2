@@ -285,7 +285,7 @@ class Gui_Functions:
     #
     def change_expression_font(self):
         ## saves current expression length
-        currExpressionLength = len(self.expression)
+        currExpressionLength = len(str(self.expression))
         ## adds number to move font size
         moveLengthBy = 2
         
@@ -317,12 +317,6 @@ class Gui_Functions:
     #
     def div_input(self, input):
         self.change_expression_font()
-
-        #     self.inputField.config(font = ("Lato", 13))
-        # elif expressionLength == 30:
-        #     self.inputField.config(font = ("Lato", 12))
-        # elif expressionLength == 35:
-        #     self.inputField.config(font = ("Lato", 11))
 
         ## if toDelete boolean is set
         if self.toDelete:
@@ -425,12 +419,15 @@ class Gui_Functions:
             if num < 0:
                 ## store result of: 0 - entered number
                 self.result = self.calculate("0" + self.expression)
-                ## print result onto input field
-                self.inputField.insert(0, self.result)
-                ## clear expression field
-                self.expressionField.delete(0, END)
-                ## print result onto expression(result) field
-                self.expressionField.insert(0, self.result)
+            else:
+                ## store result of: 0 - entered number
+                self.result = self.calculate(self.expression)
+            ## print result onto input field
+            self.inputField.insert(0, self.result)
+            ## clear expression field
+            self.expressionField.delete(0, END)
+            ## print result onto expression(result) field
+            self.expressionField.insert(0, self.result)
         ## if first value is minus sign
         elif self.expression[0] == "-":
             ## calls div_input function with blank input
