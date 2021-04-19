@@ -294,8 +294,6 @@ class Gui_Functions:
             self.fontSize = 14
         ## if length is between 25 and 40
         elif currExpressionLength >= 25 and currExpressionLength <= 40:
-            ## justifies expression to right
-            self.inputField.config(justify='right')
             ## algorithm to move fontsize after
             moveLengthBy = currExpressionLength / 10 - 1
 
@@ -309,8 +307,6 @@ class Gui_Functions:
                 
             ## sets new fontsize
             self.inputField.config(font = ("Lato", self.fontSize))
-        elif currExpressionLength > 50:
-            self.inputField.config(justify='left')
         
 
     ## 
