@@ -67,6 +67,8 @@ class Gui_Functions:
         self.doubleClear = False
         self.addAbs = False
         self.deleteAbs = False
+        self.lastExpressionLength = len(self.expression)
+        self.fontSize = 14
 
     ## 
     #  @brief calculates expession
@@ -277,12 +279,55 @@ class Gui_Functions:
                     self.ansAddPar = True
 
     ## 
+    #  @brief change font in input field depending on expression length
+    #  
+    #  @param self the object pointer
+    #
+    def change_expression_font(self):
+        ## saves current expression length
+        currExpressionLength = len(self.expression)
+        ## adds number to move font size
+        moveLengthBy = 2
+        
+        ## if length is under 25, fontsize is set to 14
+        if currExpressionLength < 25:
+            self.fontSize = 14
+        ## if length is between 25 and 40
+        elif currExpressionLength >= 25 and currExpressionLength <= 40:
+            ## justifies expression to right
+            self.inputField.config(justify='right')
+            ## algorithm to move fontsize after
+            moveLengthBy = currExpressionLength / 10 - 1
+
+            if currExpressionLength >= self.lastExpressionLength + moveLengthBy:
+                self.fontSize -= 1
+                self.lastExpressionLength = currExpressionLength
+
+            elif currExpressionLength <= self.lastExpressionLength - moveLengthBy:
+                self.fontSize += 1
+                self.lastExpressionLength = currExpressionLength
+                
+            ## sets new fontsize
+            self.inputField.config(font = ("Lato", self.fontSize))
+        elif currExpressionLength > 50:
+            self.inputField.config(justify='left')
+        
+
+    ## 
     #  @brief divides input values
     #  
     #  @param self the object pointer
     #  @input current input
     #
     def div_input(self, input):
+        self.change_expression_font()
+
+        #     self.inputField.config(font = ("Lato", 13))
+        # elif expressionLength == 30:
+        #     self.inputField.config(font = ("Lato", 12))
+        # elif expressionLength == 35:
+        #     self.inputField.config(font = ("Lato", 11))
+
         ## if toDelete boolean is set
         if self.toDelete:
             ## clears input field and expression
@@ -429,6 +474,7 @@ class Gui_Functions:
     def remove(self):
         ## if expression is not empty
         if self.expression != "":
+            self.change_expression_font()
             ## if expression ends with ending parenthesis
             if self.expression.endswith(")"): 
                 ## inPar and doublePar is set to true
