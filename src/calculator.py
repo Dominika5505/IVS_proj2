@@ -121,6 +121,7 @@ class Calculator:
                 self.exprArray.insert(index - 1, int_or_float(result))
                 ## modifies array length, decreasing it by 2 (3 items deleted, 1 inserted)
                 self.exprArrayLen -= 2
+                index = 0
             ## iterator of loop increased
             index += 1
 
@@ -153,6 +154,7 @@ class Calculator:
                 self.exprArray.insert(index - 1, int_or_float(result))
                 ## modifies array length, decreasing it by 2 (3 items deleted, 1 inserted)
                 self.exprArrayLen -= 2
+                index = 0
             ## iterator of loop increased
             index+=1
 
@@ -185,6 +187,7 @@ class Calculator:
                 self.exprArray.insert(index - 1, int_or_float(result))
                 ## modifies array length, decreasing it by 2 (3 items deleted, 1 inserted)
                 self.exprArrayLen -= 2
+                index = 0
             ## iterator of loop increased
             index+=1
 
@@ -217,6 +220,7 @@ class Calculator:
                 self.exprArray.insert(index - 1, int_or_float(result))
                 ## modifies array length, decreasing it by 2 (3 items deleted, 1 inserted)
                 self.exprArrayLen -= 2
+                index = 0
             ## iterator of loop increased
             index+=1
 
@@ -226,10 +230,11 @@ class Calculator:
     #  @param self the object pointer
     #
     def solve_sum(self):
-        ## index of expression array
+        # ## index of expression array
         index = 0
         ## loops through expression array
         while index < self.exprArrayLen:
+
             ## finds index that contains only sum symbol
             if self.exprArray[index] == "+":
 
@@ -249,8 +254,11 @@ class Calculator:
                 self.exprArray.insert(index - 1, int_or_float(result))
                 ## modifies array length, decreasing it by 2 (3 items deleted, 1 inserted)
                 self.exprArrayLen -= 2
+                index = 0
+            
             ## iterator of loop increased
-            index += 1
+            index+=1
+            
 
     ##
     #  @brief solves expressions containing subtraction
@@ -282,6 +290,8 @@ class Calculator:
                 self.exprArray.insert(index - 1, int_or_float(result))
                 ## modifies array length, decreasing it by 2 (3 items deleted, 1 inserted)
                 self.exprArrayLen -= 2
+                index = 0
+            
             ## iterator of loop increased
             index+=1
 
