@@ -1,12 +1,19 @@
+STUFF_TO_CLEAN=__pycache__
+APP=app
+PACK_BATCH=pack
+CODE_LANG=py
+PROFILING_APP=profiling
+PROFILING_INPUT=input_prof_1000_nums
+HELP_FILE=help.txt
+
 all: run
 pack:
-	mkdir xpucek03_xfojti15_xciesl06_xsedil00
-	cd ..
+	${PACK_BATCH}.bat
 clean:
-	rd __pycache__ /q /s
+	rd ${STUFF_TO_CLEAN} /q /s
 run:
-	py app.py
+	${CODE_LANG} ${APP}.${CODE_LANG}
 profile:
-	py profiling.py <input_prof_1000_nums.txt
+	${CODE_LANG} ${PROFILING_APP}.${CODE_LANG} <${PROFILING_INPUT}.txt
 help:
-	type help.txt
+	type ${HELP_FILE}
