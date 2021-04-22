@@ -354,7 +354,7 @@ class GUI:
         ## pressed key "Backspace" calls gui funcion remove, which removes one by one form input field
         self.root.bind(("<BackSpace>") ,lambda event:self.guiFuncs.remove())
         ## pressed key "m" calls self function, which changes light mode
-        self.root.bind("<m>" ,lambda event:self.change_light_mode(self.switchVar))
+        self.root.bind("<t>" ,lambda event:self.change_light_mode(self.switchVar))
         ## pressed "h" calls function, that opens help pdf
         self.root.bind("<h>" ,lambda event:self.guiFuncs.open_help())
         ## any other pressed key is sent to gui_func function, which sorts them out
