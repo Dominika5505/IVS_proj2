@@ -79,7 +79,8 @@ class Calculator:
                 self.convert_to_num(num)
             ## if error occurred stops solving and breaks out of loop (error is already stored in result)
             except:
-                break
+                raise ValueError
+                # break
         ## saves length of array with expression
         self.exprArrayLen = len(self.exprArray)
 
@@ -375,4 +376,7 @@ class Calculator:
             ## if number was found
             if newNum:
                 ## replaces element with result of factorial
-                self.exprArray[numIndex] = str(fact(newNum))
+                try:
+                    self.exprArray[numIndex] = str(fact(int_or_float(newNum)))
+                except:
+                    raise ValueError

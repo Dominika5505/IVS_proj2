@@ -86,7 +86,7 @@ def div(num1, num2):
 #  @return value of factorial of a number
 #
 def fact(num):
-    
+
     if (num < 0) or isinstance(num, float):
         raise ValueError
 
@@ -105,8 +105,6 @@ def exp(num, exp):
     
     if exp == 0:
         return 1
-    if (exp < 0) or isinstance(exp, float):
-        raise ValueError
 
     return num ** exp
 

@@ -78,7 +78,10 @@ class Gui_Functions:
     #
     def calculate(self, expr):
         ## initiates calculator from Calculator module
-        self.calculator = Calculator(expr)
+        try:
+            self.calculator = Calculator(expr)
+        except:
+            return "ERROR!"
         ## iterator for loop
         i = 0
         ## loops to solve sections of expression one by one, until only one value is left or error has occurred
@@ -95,23 +98,23 @@ class Gui_Functions:
             ## iterator of loop is increased
             i += 1
 
-        # ## if there are more than one value as result of calculation error is returned
-        # if self.calculator.exprArrayLen > 1:
-        #     return "ERROR!"
+        ## if there are more than one value as result of calculation error is returned
+        if self.calculator.exprArrayLen > 1:
+            return "ERROR!"
 
-        # ## result is saved from first index of final expression array as string
-        # resultStr = str(self.calculator.exprArray[0])
+        ## result is saved from first index of final expression array as string
+        resultStr = str(self.calculator.exprArray[0])
 
-        return str(self.calculator.exprArray)
+        # return str(self.calculator.exprArray)
 
 
-        # ## if value is decimal number with more than 5 decimal places
-        # if absolute(Decimal(resultStr).as_tuple().exponent) > 5:
-        #     ## value is returned as rounded decimal number with five decimal places 
-        #     return str(round(int_or_float(resultStr), 5))
-        # ## else value is returned
-        # else: 
-        #     return resultStr
+        ## if value is decimal number with more than 5 decimal places
+        if absolute(Decimal(resultStr).as_tuple().exponent) > 5:
+            ## value is returned as rounded decimal number with five decimal places 
+            return str(round(int_or_float(resultStr), 5))
+        ## else value is returned
+        else: 
+            return resultStr
 
     ## 
     #  @brief open help pdf with 
