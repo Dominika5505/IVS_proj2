@@ -1,0 +1,9 @@
+
+************************************************************************
+Napoveda pro spusteni programu Kalkulacka 1.0
+************************************************************************
+
+Pred spustenim programu je nutne overit, zdali mate nainstalovany Python ve verzi 3.0 a novejsi.
+Pokud ano, program je timto dostupny ke spusteni pres prikaz: 'make'.
+
+************************************************************************

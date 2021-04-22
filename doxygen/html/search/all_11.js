@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['s_107',['s',['../namespaceprofiling.html#a047876ccbbbec696146917f8f8ea7a47',1,'profiling']]],
+  ['settingsframe_108',['settingsFrame',['../classgui_1_1_g_u_i.html#a991394003d6bb7934843f0a7af521b8e',1,'gui::GUI']]],
+  ['solve_5fabs_109',['solve_abs',['../classcalculator_1_1_calculator.html#a16a372cd99c155f30d3451587adb3ad2',1,'calculator::Calculator']]],
+  ['solve_5fdiv_110',['solve_div',['../classcalculator_1_1_calculator.html#af7225e427d5e953796a607e5c3480967',1,'calculator::Calculator']]],
+  ['solve_5fexp_111',['solve_exp',['../classcalculator_1_1_calculator.html#a8604ae8ecc1c8bba6e53104b133d2f5f',1,'calculator::Calculator']]],
+  ['solve_5ffact_112',['solve_fact',['../classcalculator_1_1_calculator.html#a8c94465b5c482b3f439a6a2db9098f74',1,'calculator::Calculator']]],
+  ['solve_5fmult_113',['solve_mult',['../classcalculator_1_1_calculator.html#a1e6aeee55528a7d4cd403b84b3976529',1,'calculator::Calculator']]],
+  ['solve_5fpar_114',['solve_par',['../classcalculator_1_1_calculator.html#a6b1f2a1ad5661e7bb49cc7a37090bc40',1,'calculator::Calculator']]],
+  ['solve_5fsquare_5froot_115',['solve_square_root',['../classcalculator_1_1_calculator.html#a6bced6bf7c9785781e526c264799a42b',1,'calculator::Calculator']]],
+  ['solve_5fsub_116',['solve_sub',['../classcalculator_1_1_calculator.html#a0a946900fd1f96f832b217384885074f',1,'calculator::Calculator']]],
+  ['solve_5fsum_117',['solve_sum',['../classcalculator_1_1_calculator.html#a97346ad13d7cbfa41b8a00826971aad9',1,'calculator::Calculator']]],
+  ['squared_5fnums_118',['squared_nums',['../namespaceprofiling.html#a48ab28d8633945edaf74a597cbc55a7f',1,'profiling']]],
+  ['sub_119',['sub',['../namespacemath__lib.html#ab3a7c4e678d43100ee4830f16eaa8e28',1,'math_lib']]],
+  ['sum_120',['sum',['../namespacemath__lib.html#afcd07da3d7d5e98fa31c3de6dedc6628',1,'math_lib']]],
+  ['sum_5fnums_121',['sum_nums',['../namespaceprofiling.html#aa55d89f0a306ef87dc19426c93a7521e',1,'profiling']]],
+  ['sunicon_122',['sunIcon',['../classgui_1_1_g_u_i.html#aac870f39574dade32699b954908a0234',1,'gui::GUI']]],
+  ['switchvar_123',['switchVar',['../classgui_1_1_g_u_i.html#a75d6a2f069a07d6f01c9b8f7b70284b0',1,'gui::GUI']]]
+];
