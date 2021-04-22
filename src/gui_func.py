@@ -54,7 +54,6 @@ class Gui_Functions:
     #  Initiates member variables.
     def __init__(self, inputField, expressionField):
         self.inputField = inputField
-        self.docPath = "dokumentace.pdf"
         self.expression = ""
         self.result = 0
         self.ansResult = 0
@@ -120,8 +119,7 @@ class Gui_Functions:
     #  @param self the object pointer
     #
     def open_help(self):
-        os.chdir("../")
-        os.startfile(self.docPath)
+        os.startfile("dokumentace.pdf")
 
     ## 
     #  @brief add absolute value pipes (|) around number
