@@ -73,7 +73,7 @@ def mult(num1, num2):
 def div(num1, num2):
     
     if (num2 == 0):
-        raise ZeroDivisionError
+        raise ValueError("Division by zero!")
 
     return num1 / num2
 
@@ -88,7 +88,7 @@ def div(num1, num2):
 def fact(num):
 
     if (num < 0) or isinstance(num, float):
-        raise ValueError
+        raise ValueError("Factorial of decimal number doesn't exist!")
 
     return 1 if (num==1 or num==0) else num * fact(num - 1)
 
@@ -133,10 +133,12 @@ def root(num, deg):
     
     if deg % 2 == 0:
         if num < 0:
-            raise ValueError
+            raise ValueError("")
     
-    if (deg < 0) or isinstance(deg, float):
-        raise ValueError
+    if isinstance(deg, float):
+        raise ValueError("Degree of root can't be decimal number!")
+    if (deg < 0): 
+        raise ValueError("Degree of root can't be negative number!")
     if num == 0:
         return 0
     if num < 0:

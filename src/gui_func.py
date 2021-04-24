@@ -80,7 +80,7 @@ class Gui_Functions:
         ## initiates calculator from Calculator module
         try:
             self.calculator = Calculator(expr)
-        except:
+        except Exception as e:
             return "ERROR!"
         ## iterator for loop
         i = 0
@@ -93,7 +93,8 @@ class Gui_Functions:
                 self.calculator.solve_div()
                 self.calculator.solve_sub()
                 self.calculator.solve_sum()
-            except:
+            except ValueError as e:
+                print(e)
                 return "ERROR!"
             ## iterator of loop is increased
             i += 1
