@@ -80,7 +80,6 @@ class Calculator:
             ## if error occurred stops solving and breaks out of loop (error is already stored in result)
             except ValueError as e:
                 raise ValueError(str(e))
-                # break
         ## saves length of array with expression
         self.exprArrayLen = len(self.exprArray)
 
@@ -379,7 +378,4 @@ class Calculator:
                 try:
                     self.exprArray[numIndex] = str(fact(int_or_float(newNum)))
                 except ValueError as e:
-                    # print(f"Argument Error: {e}")
-                    errMsg = f"Argument Error: {e}"
-                    print(errMsg)
                     raise ValueError(str(e))
