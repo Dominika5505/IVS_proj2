@@ -437,7 +437,6 @@ class Gui_Functions:
     def remove(self):
         ## if expression is not empty
         if self.expression != "":
-            self.change_expression_font()
             ## if expression ends with ending parenthesis
             if self.expression.endswith(")"): 
                 ## inPar and doublePar is set to true
