@@ -258,6 +258,9 @@ class Gui_Functions:
     #  @param self the object pointer
     #
     def input_scrollbar_on_off(self):
+        ## sets input field focus on the end of line
+        self.inputField.after(0, self.inputField.xview_moveto, 1) 
+        
         if len(str(self.expression)) > 24:
             self.inputScrollBar.place(width = 335, relheight = 1, x = -12)
         else: 
@@ -312,9 +315,6 @@ class Gui_Functions:
     #  @input current input
     #
     def div_input(self, input):   
-        ## sets input field focus on the end of line
-        self.inputField.after(0, self.inputField.xview_moveto, 1) 
-
         self.input_scrollbar_on_off()    
 
         ## if toDelete boolean is set
@@ -467,9 +467,6 @@ class Gui_Functions:
     #  @param self the object pointer
     #
     def remove(self):
-        ## moves entry focus to the end of line, when line is too long
-        self.inputField.after(0, self.inputField.xview_moveto, 1)
-
         self.input_scrollbar_on_off()
         
         ## if expression is not empty
