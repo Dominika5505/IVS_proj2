@@ -14,6 +14,8 @@
 
 import math_lib
 import sys
+import cProfile
+import re
 
 ## 
 #  @file math_lib.py
@@ -100,9 +102,18 @@ def squared_nums(nums):
 
     return sqrdNums   
 
-## start of a programme
-if __name__ == '__main__':
+##
+#  @brief main
+#  main function to startup the programme 
+#
+def main():
     nums = read_input()
     s = deviation_calc(nums)
     print("The value of the standard deviation is: " + str(s))
+    print()
+    return
+
+## start of a programme
+if __name__ == '__main__':
+    cProfile.run('main()')
     
