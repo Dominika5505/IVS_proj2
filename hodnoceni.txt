@@ -1,0 +1,8 @@
+#################################
+Vepřo-knedlo-zelo s bryndzou TEAM
+#################################
+
+xpucek03 - 100 (testy, profiling, Makefile, vedení týmu, kompletizace)
+xfojti15 - 100 (dokumentace, psychická podpora, entertainment, generování dokumentace)
+xciesl06 - 100 (instalátor, odinstalátor, týmový hráč, debugging)
+xsedil00 - 100 (matematická knihovna, GUI, mockup, veškerá funckionalita, tryhard)

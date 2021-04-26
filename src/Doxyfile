@@ -51,7 +51,7 @@ PROJECT_BRIEF          =
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           = "C:/Users/Petr Půček/OneDrive - Vysoké učení technické v Brně/Dokumenty/IVS_proj/IVS_proj2/src/imgs/icon2.jpg"
+PROJECT_LOGO           = imgs/icon.ico
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
