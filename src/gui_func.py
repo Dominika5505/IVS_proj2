@@ -25,11 +25,9 @@
 ## @package tkinter
 #  Library with gui modules.
 try:
-    from Tkinter import END
-    from Tkinter import messagebox 
+    from Tkinter import END, messagebox 
 except ImportError:
-    from tkinter import END
-    from tkinter import messagebox 
+    from tkinter import END, messagebox
   
 from calculator import Calculator, is_int, int_or_float, absolute
 ## @package decimal
@@ -52,9 +50,10 @@ class Gui_Functions:
     #  @param self the object pointer
     #  @param inputField input and output field from passed gui
     #  @param expressionField field, where expression is outputted from passed gui
+    #  @param inputScrollBar scrollbar of input field
     # 
     #  Initiates member variables.
-    def __init__(self, inputField, expressionField):
+    def __init__(self, inputField, expressionField, inputScrollBar):
         self.inputField = inputField
         self.expression = ""
         self.result = 0
@@ -70,6 +69,7 @@ class Gui_Functions:
         self.addAbs = False
         self.deleteAbs = False
         self.lastExpressionLength = len(self.expression)
+        self.inputScrollBar = inputScrollBar
 
     ## 
     #  @brief calculates expession
@@ -131,10 +131,10 @@ class Gui_Functions:
     #
     def open_help(self):
         try:
-            os.startfile("uzivatelska_prirucka.pdf")
+            os.startfile("dokumentace.pdf")
         except:
             os.chdir("../")
-            os.startfile("uzivatelska_prirucka.pdf")
+            os.startfile("dokumentace.pdf")
 
 
     ## 
@@ -253,6 +253,17 @@ class Gui_Functions:
                 self.conc_string(".")
 
     ## 
+    #  @brief turns the scrollbar widget on/off depending on input size
+    #  
+    #  @param self the object pointer
+    #
+    def input_scrollbar_on_off(self):
+        if len(str(self.expression)) > 24:
+            self.inputScrollBar.place(width = 335, relheight = 1, x = -12)
+        else: 
+            self.inputScrollBar.place_forget()
+
+    ## 
     #  @brief concactinates expression and clears input field
     #  
     #  @param self the object pointer
@@ -300,7 +311,12 @@ class Gui_Functions:
     #  @param self the object pointer
     #  @input current input
     #
-    def div_input(self, input):
+    def div_input(self, input):   
+        ## sets input field focus on the end of line
+        self.inputField.after(0, self.inputField.xview_moveto, 1) 
+
+        self.input_scrollbar_on_off()    
+
         ## if toDelete boolean is set
         if self.toDelete:
             ## clears input field and expression
@@ -372,6 +388,7 @@ class Gui_Functions:
         if self.calculator:
             self.calculator.clear_array()
         self.expression = ""
+        self.input_scrollbar_on_off()
 
     ##
     #  @brief evaluates expression
@@ -442,12 +459,19 @@ class Gui_Functions:
         ## toDelete is set to true
         self.toDelete = True
 
+        self.input_scrollbar_on_off()
+
     ##
     #  @brief removes characters from expression one by one form end
     #  
     #  @param self the object pointer
     #
     def remove(self):
+        ## moves entry focus to the end of line, when line is too long
+        self.inputField.after(0, self.inputField.xview_moveto, 1)
+
+        self.input_scrollbar_on_off()
+        
         ## if expression is not empty
         if self.expression != "":
             ## if expression ends with ending parenthesis

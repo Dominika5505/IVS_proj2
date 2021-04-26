@@ -31,6 +31,8 @@ try:
     ## @package Tkinter.font
     #  Font settings for gui.
     import Tkinter.font as tkFont
+
+    from Tkinter import ttk
 except ImportError:
     ## @package tkinter
     #  Library with gui modules.
@@ -38,6 +40,8 @@ except ImportError:
     ## @package tkinter.font
     #  Font settings for gui.
     import tkinter.font as tkFont
+
+    from tkinter import ttk
 
 ##
 #  @brief formates creates gui 
@@ -62,7 +66,7 @@ class GUI:
         self.create_input_field()
         self.create_expression_field()
         ## calling gui formatting functions
-        self.guiFuncs = Gui_Functions(self.inputField, self.expressionField)
+        self.guiFuncs = Gui_Functions(self.inputField, self.expressionField, self.scrollbarInput)
 
         self.create_buttons()
         self.position_buttons()
@@ -79,6 +83,11 @@ class GUI:
     def create_root(self):
         ## initiates root
         self.root = tk.Tk()
+
+        ## sets style for scrollbar widget
+        self.style = ttk.Style()
+        self.style.theme_use("clam")
+
         ## sets app not to be resized
         self.root.resizable(0, 0)
         ## sets apps icon
@@ -86,7 +95,8 @@ class GUI:
         ## sets default font of app
         self.defaultFont = tkFont.Font(root = self.root, family = "Lato", size = 24, weight = "bold")
         ## sets dimensions of an app
-        self.root.geometry("312x400")
+        self.root.geometry("312x405")
+        # self.root.geometry("312x500")
         ## sets title of an app
         self.root.title("Kalkulačka 1.0")
 
@@ -106,8 +116,8 @@ class GUI:
         self.inputFrame = tk.Frame(self.root, width = 312, height = 50, bd = 0)
         self.inputFrame.pack(side = tk.TOP)
         ## empty frame, that creates space between input and button frame
-        self.emptyFrame = tk.Frame(self.root, width = 312, height = 5)
-        self.emptyFrame.pack()
+        self.scrollbarFrame = tk.Frame(self.root, width = 312, height = 10)
+        self.scrollbarFrame.pack()
         ## frame for buttons
         self.btnsFrame = tk.Frame(self.root, width = 312, height = 300)
         self.btnsFrame.pack()
@@ -118,8 +128,14 @@ class GUI:
     #  @param self the object pointer
     #
     def create_input_field(self):
-        self.inputField = tk.Entry(self.inputFrame, font = ("Lato", 14), width = 50, bd = 0, justify = tk.RIGHT, cursor = "arrow")
-        self.inputField.place(bordermode = tk.OUTSIDE, relwidth = 0.95, relheight = 1)
+        self.scrollbarInput = ttk.Scrollbar(self.scrollbarFrame, orient="horizontal")
+        
+        self.inputField = tk.Entry(self.inputFrame, font = ("Lato", 14), width = 50, bd = 0, justify = tk.RIGHT, cursor = "arrow", xscrollcommand=self.scrollbarInput.set)
+        self.inputField.place(bordermode = tk.OUTSIDE, relwidth = 0.90, relheight = 1, relx = 0.05)
+
+        self.scrollbarInput.config(command=self.inputField.xview)
+
+
 
     ## 
     #  @brief creates expression field
@@ -185,7 +201,11 @@ class GUI:
             ## sets colors of frames
             self.textFrame.config(bg = "#f8f8f8")
             self.inputFrame.config(bg = "#f8f8f8")
-            self.emptyFrame.config(bg = "#f8f8f8")
+            self.scrollbarFrame.config(bg = "#f8f8f8")
+
+            # configure the scrollbar style
+            self.style.configure("Horizontal.TScrollbar", gripcount=0, background="#f1f1f1", darkcolor="#f8f8f8", lightcolor="#f8f8f8", troughcolor="#f8f8f8", bordercolor="#f8f8f8", arrowcolor="#f8f8f8")
+
             self.btnsFrame.config(bg = "#fff")
             self.inputField.config(bg = "#f8f8f8", fg = "#555")
             self.expressionField.config(bg = "#f8f8f8", fg = "#999")
@@ -234,7 +254,11 @@ class GUI:
             ## sets colors of frames
             self.textFrame.config(bg = "#4f4f4f")
             self.inputFrame.config(bg = "#4f4f4f")
-            self.emptyFrame.config(bg = "#4f4f4f")
+            self.scrollbarFrame.config(bg = "#4f4f4f")
+
+            # configure the scrollbar style
+            self.style.configure("Horizontal.TScrollbar", gripcount=0, background="#444", darkcolor="#4f4f4f", lightcolor="#4f4f4f", troughcolor="#4f4f4f", bordercolor="#4f4f4f", arrowcolor="#4f4f4f")
+            
             self.btnsFrame.config(bg = "#4f4f4f")
             self.inputField.config(bg = "#4f4f4f", fg = "#aaa")
             self.expressionField.config(bg = "#4f4f4f", fg = "#888")
