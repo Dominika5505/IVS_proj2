@@ -122,7 +122,12 @@ class Gui_Functions:
     #  @param self the object pointer
     #
     def open_help(self):
-        os.startfile("dokumentace.pdf")
+        try:
+            os.startfile("uzivatelska_prirucka.pdf")
+        except:
+            os.chdir("../")
+            os.startfile("uzivatelska_prirucka.pdf")
+
 
     ## 
     #  @brief add absolute value pipes (|) around number
