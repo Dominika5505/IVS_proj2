@@ -68,7 +68,7 @@ class Calculator:
     #  Solves factorial, absolute values, removes parantheses, and converts string to number
     def __init__(self, exprString):
         ## divides expression string into array of operands and numbers as strings
-        self.exprArray = re.findall(r'[+-\/\*\^√]+|[|]?[(]?[-]?\d+[.]?\d*[)]?[!]?[|]?', exprString)  
+        self.exprArray = re.findall(r'[+-\/\*\^√]+|[|]?[(]?[+]?[-]?\d+[.]?\d*[)]?[!]?[|]?', exprString)
         ## solves factorial, absolute values, occurrence of parantheses in loop
         for num in range(len(self.exprArray)):
             try:
@@ -210,7 +210,10 @@ class Calculator:
                 num2 = int_or_float(self.exprArray[index + 1])
                 
                 ## result of divide function
-                result = div(num1, num2)
+                try:
+                    result = div(num1, num2)
+                except ZeroDivisionError as e:
+                    raise ZeroDivisionError(str(e))
 
                 ## removes num1, division symbol and num2 one by one from array
                 self.exprArray.pop(index - 1)
@@ -328,16 +331,17 @@ class Calculator:
             ## searches for decimal or integer number in element
             numExt = re.search(r'[-]?\d+[.]?\d*', num)
             ## returns number as string or None if number wasn't found
-            newNum = str(numExt.group()) if numExt else None
-
+            newNum = int_or_float(numExt.group()) if numExt else None
             ## if number was found
             if newNum:
-                ## if the element before is minus sign
-                if self.exprArray[numIndex - 1] == "-":
-                    ## replaces number with its absolute value
-                    newNum = absolute(int_or_float(newNum))
-                    ## minus sign replaces by plus sign
-                    self.exprArray[numIndex - 1] = "+"
+                ## if found number is negative
+                if newNum < 0:
+                    ## if the element before is minus sign
+                    if self.exprArray[numIndex - 1] == "-":
+                        ## replaces number with its absolute value
+                        newNum = absolute(int_or_float(newNum))
+                        ## minus sign replaces by plus sign
+                        self.exprArray[numIndex - 1] = "+"
                 ## replaces element by new number as string
                 self.exprArray[numIndex] = str(newNum)
 

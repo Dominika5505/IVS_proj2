@@ -73,7 +73,7 @@ def mult(num1, num2):
 def div(num1, num2):
     
     if (num2 == 0):
-        raise ValueError("Division by zero!")
+        raise ZeroDivisionError("Division by zero!")
 
     return num1 / num2
 
@@ -131,14 +131,6 @@ def absolute(num):
 #
 def root(num, deg):
     
-    if deg % 2 == 0:
-        if num < 0:
-            raise ValueError("")
-    
-    if isinstance(deg, float):
-        raise ValueError("Degree of root can't be decimal number!")
-    if (deg < 0): 
-        raise ValueError("Degree of root can't be negative number!")
     if num == 0:
         return 0
     if num < 0:

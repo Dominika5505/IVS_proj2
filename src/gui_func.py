@@ -26,8 +26,10 @@
 #  Library with gui modules.
 try:
     from Tkinter import END
+    from Tkinter import messagebox 
 except ImportError:
     from tkinter import END
+    from tkinter import messagebox 
   
 from calculator import Calculator, is_int, int_or_float, absolute
 ## @package decimal
@@ -79,8 +81,12 @@ class Gui_Functions:
         ## initiates calculator from Calculator module
         try:
             self.calculator = Calculator(expr)
-        except Exception as e:
+        except (ValueError, ZeroDivisionError) as e:
+            messagebox.showerror("Error", str(e))
             return "ERROR!"
+        except:
+            return "ERROR!"
+
         ## iterator for loop
         i = 0
         ## loops to solve sections of expression one by one, until only one value is left or error has occurred
@@ -92,8 +98,10 @@ class Gui_Functions:
                 self.calculator.solve_div()
                 self.calculator.solve_sub()
                 self.calculator.solve_sum()
-            except ValueError as e:
-                print(e)
+            except (ValueError, ZeroDivisionError) as e:
+                messagebox.showerror("Error", str(e))
+                return "ERROR!"
+            except:
                 return "ERROR!"
             ## iterator of loop is increased
             i += 1
@@ -198,9 +206,9 @@ class Gui_Functions:
     #  @param input values added
     #
     def add_paranth(self, input):
-        ## checks if number is at the end of expression
-        findNum = re.search(r'[-]?\d+[.]?\d*^|[-]?\d+[.]?\d*$', self.expression)
-        foundNum = int_or_float(findNum.group()) if findNum else None
+        ## checks if number with + or - sign is at the end of expression
+        findNum = re.search(r'[+]\d+[.]?\d*$|[-]?\d+[.]?\d*^|[-]?\d+[.]?\d*$', self.expression)
+        foundNum = str(findNum.group()) if findNum else None
         ## sets is in paratheses to false
         self.inPar = False
         ## sets add paratheses to false
@@ -278,7 +286,7 @@ class Gui_Functions:
             ## if expression ends with some operand
             if self.expression.endswith("-") or self.expression.endswith("+") or self.expression.endswith("/") or self.expression.endswith("*") or self.expression.endswith("^") or self.expression.endswith("√"):
                 ## if input is -
-                if input == "-":
+                if input == "-" or input == "+":
                     ## sets inPar boolean to true
                     self.inPar = True
                 ## if input is n and ans in negative number
