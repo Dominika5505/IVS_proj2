@@ -1,0 +1,27 @@
+         5026 function calls in 0.002 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.002    0.002 <string>:1(<module>)
+        2    0.000    0.000    0.000    0.000 codecs.py:281(getstate)
+        2    0.000    0.000    0.000    0.000 cp1250.py:22(decode)
+     1001    0.000    0.000    0.000    0.000 math_lib.py:104(exp)
+        1    0.000    0.000    0.000    0.000 math_lib.py:132(root)
+     2000    0.000    0.000    0.000    0.000 math_lib.py:34(sum)
+        1    0.000    0.000    0.000    0.000 math_lib.py:73(div)
+        1    0.000    0.000    0.002    0.002 profiling.py:109(main)
+        1    0.000    0.000    0.000    0.000 profiling.py:34(read_input)
+        1    0.000    0.000    0.001    0.001 profiling.py:54(deviation_calc)
+        1    0.000    0.000    0.000    0.000 profiling.py:68(mean_calc)
+        2    0.000    0.000    0.000    0.000 profiling.py:80(sum_nums)
+        1    0.000    0.000    0.000    0.000 profiling.py:96(squared_nums)
+        2    0.000    0.000    0.000    0.000 {built-in method _codecs.charmap_decode}
+        1    0.000    0.000    0.002    0.002 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        2    0.001    0.000    0.001    0.000 {built-in method builtins.print}
+     2000    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 {method 'readline' of '_io.TextIOWrapper' objects}
+        1    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
