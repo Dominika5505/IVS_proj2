@@ -5,6 +5,8 @@ cd ..
 mkdir temp
 cd temp
 set tempDir=%cd%
+mkdir xpucek03_xfojti15_xciesl06_xsedil00
+cd xpucek03_xfojti15_xciesl06_xsedil00
 mkdir repo
 cd repo
 set curDir2=%cd%
@@ -22,12 +24,14 @@ cd install
 set installDir=%cd%
 cd ..
 cd ..
+cd ..
 xcopy ".\doc\*" "%docDir%" /E /H /C /I
 xcopy ".\install\*" "%installDir%" /E /H /C /I
 attrib "%curDir2%\.git" -s -h
 powershell -nologo -noprofile -command "& {Compress-Archive '%tempDir%\*' -DestinationPath '%curDir%\xpucek03_xfojti15_xciesl06_xsedil00.zip' -Force}"
 cd %curDir2%
 cd .. 
+cd ..
 cd ..
 rd temp /q /s
 cd %curDir%
